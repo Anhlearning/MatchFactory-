@@ -33,7 +33,7 @@ const ManagerClick=cc.Class({
     },
     
     AddObjectInContainer(node){
-        if(this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node)|| this.objectsCurrentContainer.length >=3 || this.objectsCurrentStack.length>=5){
+        if(this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node)){
             console.log("Đã vào trong hàng đợi hoặc container");
             return ;
         }
@@ -45,6 +45,7 @@ const ManagerClick=cc.Class({
                 this.HandleObjectInContainer(node);
             }
             return;
+
         }
     
         let isNameExist = false;
@@ -58,7 +59,6 @@ const ManagerClick=cc.Class({
         } 
         else {
             this.PushObjectInStack(node);
-            return;
         }
     },
     
@@ -69,6 +69,7 @@ const ManagerClick=cc.Class({
                return true;
             }
         }
+        console.log("push object co ten la: "+node.name);
         this.PushObjectInStack(node);
         return false;
     },
@@ -77,7 +78,6 @@ const ManagerClick=cc.Class({
             console.log("THUA ROI HEHE !! ")
             return;
         }
-        
         this.objectsCurrentStack.push(node);
         let targetNode= this.stack.children[this.objectsCurrentStack.length-1];
         let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 30));
@@ -87,6 +87,16 @@ const ManagerClick=cc.Class({
         .start();
         
 
+    },
+    SortPosInStack(){
+        for(let i=0;i<this.objectsCurrentStack.length;i++){
+            let targetNode= this.stack.children[i];
+            let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 30));
+            let targetPos = this.objectsCurrentStack[i].parent.convertToNodeSpaceAR(containerWorldPos);
+            cc.tween(this.objectsCurrentStack[i])
+            .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
+            .start();
+        }
     },
     HandleObjectInContainer(node){
         this.objectsCurrentContainer.push(node);
@@ -110,8 +120,8 @@ const ManagerClick=cc.Class({
     HandleObjectInStack(node){
         console.log("HANDLE IN STACK");
         listObjectSameName=[];
-        for (let i = this.objectsCurrentStack.length - 1; i >= 0; i--) {
-            if(listObjectSameName.length >=2) return;
+        for (let i = 0; i < this.objectsCurrentStack.length; i++) {
+            if(listObjectSameName.length >=2) break;
             if (this.objectsCurrentStack[i].name === node.name) {
                 listObjectSameName.push(this.objectsCurrentStack[i]);
             }
@@ -127,6 +137,7 @@ const ManagerClick=cc.Class({
             this.HandleObjectInContainer(listObjectSameName[i]);
         }
         this.HandleObjectInContainer(node);
+        this.SortPosInStack();
     }
 
 });
