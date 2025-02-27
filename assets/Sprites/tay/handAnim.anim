@@ -1,0 +1,61 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "handAnim",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.21666666666666667,
+  "sample": 60,
+  "speed": 0.6,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "edc39b58-fe51-48ba-b151-13c137cef02d"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "dac80f1d-7b7a-4e88-89d5-16e7409ba4b1"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "68e18772-099f-4d13-b00f-dab303e0e395"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "68821a2f-20e2-47b0-8ce7-c2f6c0e305f8"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "788e0e40-8d70-4365-aeb2-8a4f42977eb2"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "8e287d97-5feb-4150-a6f3-e783a6ad6632"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "239e1204-e555-48ff-89c4-3752d1e794c4"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -33,7 +33,7 @@ const ManagerClick=cc.Class({
     },
     
     AddObjectInContainer(node){
-        if(this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node)){
+        if(this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || !this.currentContainer){
             console.log("Đã vào trong hàng đợi hoặc container");
             return ;
         }
@@ -84,26 +84,33 @@ const ManagerClick=cc.Class({
     },
 
 
- 
-
     HandleObjectInContainer(node){
-        if(this.objectsCurrentContainer.length>=3 || !this.currentContainer) return;
+        if(this.objectsCurrentContainer.length>=3) return;
         let targetNode= this.containers[0].children[this.objectsCurrentContainer.length];
+
         this.objectsCurrentContainer.push(node);
+        
         let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 0));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
+
         this.HandleMoveDownTile(node.position);
         cc.tween(node)
         .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
         .call(()=>{
                 this.countContainer++;
                 if (this.countContainer === 3) {
-                    this.HandleNextContainer()
                     this.objectsCurrentContainer.forEach(node => {
-                        node.destroy();
+                        let targetX = node.position.x - cc.winSize.width; 
+                        cc.tween(node)
+                            .to(0.5, { position: cc.v2(targetX, node.position.y+20) }, { easing: 'sineInOut' }) 
+                            .call(() => {
+                                node.destroy(); 
+                            })
+                            .start();
                     });
                     this.countContainer=0;
                     this.objectsCurrentContainer=[];
+                    this.HandleNextContainer()
                 }
             })
             .start();
@@ -131,8 +138,6 @@ const ManagerClick=cc.Class({
             
 
             firstContainer.opacity = 255; 
-
-
             this.containers.push(firstContainer);
         })
         .start();
@@ -142,12 +147,48 @@ const ManagerClick=cc.Class({
             .to(0.5, { position: firstContainerPos }, { easing: "sineInOut" })
             .call(()=>{
                 this.currentContainer=this.containers[0];
+                this.AutoPushStackInContainer();
             })
             .start();
         cc.tween(thirdContainer)
         .to(0.5, { position: secondContainerPos}, { easing: "sineInOut" })
         .start();
-},
+    },
+
+    AutoPushStackInContainer(){
+        if(this.objectsCurrentStack.length <=0 || !this.currentContainer) {
+            console.log("STACK RONG HOAC KHONG CO CONTAINER");
+            return;
+        }
+        let nameContainer=this.currentContainer.name.split(" ")[1];
+        let ObjectHandList=[];
+        ok=false;
+        for(let i=0;i < this.objectsCurrentStack.length;i++){
+            if(this.objectsCurrentStack[i].name === nameContainer){
+                console.warn("PUSHING INTO OBJECT");
+                ObjectHandList.push(this.objectsCurrentStack[i]);
+            }
+            if(ObjectHandList.length >= 3) {
+                ok=true;
+                break;
+            }
+        }
+        if(ok){
+            for(let i=0;i < ObjectHandList.length;i++){
+                let obj = ObjectHandList[i];
+                let index = this.objectsCurrentStack.indexOf(obj);
+                if (index !== -1) {
+                    this.objectsCurrentStack.splice(index, 1);
+                }
+            }
+            for(let i=0;i<ObjectHandList.length;i++){
+                this.HandleObjectInContainer(ObjectHandList[i]);
+            }
+            this.SortPosInStack();
+            return true;
+        }
+        return false;
+    },
 
     CheckObjectClickInStack(node){
         if(this.objectsCurrentStack.length <=0) return false;
@@ -185,6 +226,7 @@ const ManagerClick=cc.Class({
     },
     
     HandleMoveDownTile(deletedNodes){
+        ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
         this.ManagerSpawner.children.forEach(otherNode => {
             if (otherNode.position.x === deletedNodes.x && otherNode.position.y > deletedNodes.y) {
                 let newY = otherNode.position.y - 180;

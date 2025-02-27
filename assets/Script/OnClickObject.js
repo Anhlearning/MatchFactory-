@@ -7,6 +7,7 @@
 
 const ManagerClick = require('ManagerClick');
 const ManagerSpawner = require('./ManagerSpawner');
+const HandClick = require('HandClick');
 cc.Class({
     extends: cc.Component,
 
@@ -25,7 +26,7 @@ cc.Class({
 
     onMouseDown() {
         if(!this.CheckIsObjectMinY()) return ;
-        console.log(this.node.name);
+        HandClick.instance.HandClickObject(this.node);
         ManagerClick.instance.AddObjectInContainer(this.node);
 
     },

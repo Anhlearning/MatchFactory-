@@ -23,6 +23,7 @@ const ManagerSpawner=cc.Class({
     },    
     onLoad(){
         ManagerSpawner.instance=this;
+        this.maxdistanceY=0;
     },
     start () {
         this.spawnObject();
@@ -42,29 +43,46 @@ const ManagerSpawner=cc.Class({
 
         for(let row = 0; row < this.nodeStringList.length; row++){
             let str = this.nodeStringList[row];
-            // Tìm tất cả các số trong chuỗi (số cột của hàng này)
             let numbers = str.match(/\d+/g);
-            if (!numbers) continue; // Nếu không có số nào, bỏ qua hàng này.
-
-            // Duyệt qua từng số trong chuỗi (mỗi số đại diện cho một prefab index)
+            if (!numbers) continue;
             for (let col = 0; col < numbers.length; col++) {
                 let num = numbers[col];
                 let index = parseInt(num);
-                // Kiểm tra xem index có hợp lệ không
                 if (index >= 0 && index < this.listSpawner.length) {
                     let prefab = this.listSpawner[index];
                     let newNode = cc.instantiate(prefab);
 
                     let posX = startX + col * spacingX;
                     let posY = startY - row * spacingY;
+                    this.maxdistanceY=Math.max(posY,this.maxdistanceY);
                     newNode.setPosition(cc.v2(posX, posY));
-
-                    // Thêm newNode vào containerNode
                     this.node.addChild(newNode);
                 } 
             }
         }
-    }
-  
+    },
+    SpawnObjectSingle(posX) {
+        // Kiểm tra listSpawner có phần tử nào không
+        if (this.listSpawner.length === 0) {
+            cc.error("listSpawner is empty!");
+            return;
+        }
+    
+        let randomIndex = Math.floor(Math.random() * this.listSpawner.length);
+    
+        // Lấy prefab từ danh sách
+        let prefab = this.listSpawner[randomIndex];
+    
+        // Tạo một object từ prefab
+        let newNode = cc.instantiate(prefab);
+    
+        // Đặt vị trí cho object spawn
+        newNode.setPosition(cc.v2(posX, this.maxdistanceY+180));
+    
+        // Thêm vào scene
+        this.node.addChild(newNode);
+    },
+    
+    
 });
 module.exports=ManagerSpawner;

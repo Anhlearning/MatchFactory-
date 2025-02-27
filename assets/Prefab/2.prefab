@@ -39,8 +39,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 126,
-      "height": 121
+      "width": 448,
+      "height": 418
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -58,8 +58,8 @@
         0,
         0,
         1,
-        0.8,
-        0.8,
+        0.3,
+        0.3,
         1
       ]
     },
@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "20fe0608-0ddc-4f22-b1e8-90d547574506"
+      "__uuid__": "461f2577-5f67-4763-9027-91d52050e998"
     },
     "_type": 0,
     "_sizeMode": 1,
