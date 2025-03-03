@@ -18,7 +18,10 @@ cc.Class({
        
     },
     onLoad() { 
+        this.originScaleX = this.node.scaleX;
+        this.originScaleY = this.node.scaleY;
     }
+    
     ,
     start() {
         this.node.on(cc.Node.EventType.TOUCH_START, this.onMouseDown, this);
@@ -26,11 +29,18 @@ cc.Class({
 
     onMouseDown() {
         if(!this.CheckIsObjectMinY()) return ;
-        HandClick.instance.HandClickObject(this.node);
         ManagerClick.instance.AddObjectInContainer(this.node);
 
     },
-    
+    pieceBouyingAnimating(piece) {
+        let originScaleY = this.originScaleY;   // dùng từ node chính của script
+        let originScaleX = this.originScaleX;
+        cc.tween(piece)
+        .to(0.2, { scaleX: originScaleX + 0.15, scaleY: originScaleY - 0.15 })
+        .to(0.2, { scaleY: originScaleY + 0.15, scaleX: originScaleX - 0.15 })
+        .to(0.15, { scaleY: originScaleY, scaleX: originScaleX })
+        .start();
+    },
     CheckIsObjectMinY(){
         let parent = this.node.parent;
         if (!parent) return false; // Nếu không có parent, trả về false

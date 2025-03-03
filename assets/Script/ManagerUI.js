@@ -16,6 +16,7 @@ cc.Class({
         managerSpawn:cc.Node,
         tutorials:cc.Node,
         itemlist:cc.Node,
+        listBG:[cc.Node],
     },
 
     onLoad(){
@@ -33,7 +34,9 @@ cc.Class({
     setResizeCallback() {
         cc.view.setResizeCallback(() => {
            this.updateScaleOnResize();
+           this.FitBackGroundUI();
         });
+        this.FitBackGroundUI();
         this.updateScaleOnResize();
     },
     updateScaleOnResize() {
@@ -43,7 +46,17 @@ cc.Class({
         console.log(heightframe +" "+widthframe);
 
         let targetScale = 1;
-        if (widthframe > heightframe) {
+
+        if(heightframe >= 1.3 * widthframe  && heightframe < 1.7 *widthframe){
+            console.log("Màn ipad");
+            targetScale = 1;
+            this.AdjustScaleAllObject(targetScale);
+            this.SetOriginPosAllOb();
+           
+        }
+
+        else if (widthframe > heightframe) {
+            console.log("màn Ngang");
             targetScale = widthframe / this.originWidth/2;
             this.AdjustScaleAllObject(targetScale);
             this.managerSpawn.setPosition(cc.v2(-widthframe / 4, 0));
@@ -51,14 +64,31 @@ cc.Class({
             this.moveNodeToRightEdge();
             this.syncItemlistPosition();   
         }
-         else {
-            // màn hình dọc   
-            // targetScale = widthframe / this.originWidth;
+        else {
+            console.log("màn hình dọc") 
             targetScale = 1* (widthframe/1080);
             this.AdjustScaleAllObject(targetScale);
             this.SetOriginPosAllOb();
         }
        
+    },
+
+    FitBackGroundUI(){
+        let heightframe = cc.winSize.height;
+        let widthframe = cc.winSize.width;
+        if(heightframe >= widthframe){
+           let  targetScale = Math.max(1,widthframe/this.originWidth);
+            for(let i=0;i<this.listBG.length;i++){
+                this.listBG[i].scale= targetScale;
+            }
+        }
+        else {
+            let targetScale = Math.max(1,widthframe / 1080 );
+            console.error(targetScale);
+            for(let i=0;i<this.listBG.length;i++){
+                this.listBG[i].scale= targetScale;
+            }
+        }
     },
 
     SetOriginPosAllOb(){
@@ -77,12 +107,16 @@ cc.Class({
     moveNodeToRightEdge() {
         let widthframe = cc.winSize.width;
         let heightframe = cc.winSize.height;
-    
-        // Vị trí mới: góc trên bên phải
+        
+        let frameSize=cc.view.getFrameSize();
+        let offsetY = 200 * (320/frameSize.height );
+        if(frameSize.height > 500 ) offsetY=0;
+        console.log(frameSize.height);
         let newX = widthframe / 4 ;
-        let newY = heightframe / 2 + 200 * (heightframe / 1920);
+        let newY = heightframe / 2 + offsetY*(frameSize.height / 320);
         this.container.setPosition(cc.v2(newX, newY));
         this.tutorials.setPosition(cc.v2(newX, newY));
+        console.log(this.container.getPosition());
     },
     syncItemlistPosition() {
         // Lấy world position của ManagerSpawn

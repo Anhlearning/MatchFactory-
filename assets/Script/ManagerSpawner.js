@@ -29,16 +29,16 @@ const ManagerSpawner=cc.Class({
     start () {
         this.spawnObject();
     },
-    spawnObject(){
+    spawnObject() {
         if (this.listSpawner.length == 0) {
             return;
         }
         
         let heightframe = cc.winSize.height;
-     
+    
         let spacingX = 150;
         let spacingY = 180;
-        
+    
         let totalCols = 0; 
         for (let row = 0; row < this.nodeStringList.length; row++) {
             let str = this.nodeStringList[row];
@@ -47,32 +47,47 @@ const ManagerSpawner=cc.Class({
                 totalCols = Math.max(totalCols, numbers.length);
             }
         }
-        let startX = -((totalCols - 1) * spacingX / 2);
-        let startY = heightframe/2 + 200;  
         
+        let startX = -((totalCols - 1) * spacingX / 2);
+        let startY = heightframe / 2 + 200;
+    
+        let spawnDelay = 0; // Delay để từng node ra hiệu ứng nối tiếp đẹp hơn
+    
         for (let row = 0; row < this.nodeStringList.length; row++) {
             let str = this.nodeStringList[row];
             let numbers = str.match(/\d+/g);
             if (!numbers) continue;
+    
             for (let col = 0; col < numbers.length; col++) {
                 let num = numbers[col];
                 let index = parseInt(num);
                 if (index >= 0 && index < this.listSpawner.length) {
                     let prefab = this.listSpawner[index];
                     let newNode = cc.instantiate(prefab);
-        
+    
                     let posX = startX + col * spacingX;
                     let posY = startY - row * spacingY;
-        
+    
                     this.maxdistanceY = Math.max(posY, this.maxdistanceY);
                     newNode.setPosition(cc.v2(posX, posY));
-        
+    
+                    newNode.opacity = 0;   // Ẩn ban đầu
+                    newNode.scale = 0.1;   // Scale cực nhỏ ban đầu (xa ra)
+    
                     this.node.addChild(newNode);
+    
+                    cc.tween(newNode)
+                        .delay(spawnDelay)  // Delay nhẹ tạo hiệu ứng lần lượt
+                        .to(0.4, { opacity: 255, scale: 0.35, angle: 360 }, { easing: 'backOut' })
+                        .to(0.15, { scale: 0.3 }, { easing: 'sineOut' })  // Thu về kích thước chuẩn
+                        .start();
+    
+                    spawnDelay += 0.025; // Mỗi node sau ra trễ thêm chút
                 }
             }
         }
-        
     },
+    
     SpawnObjectSingle(posX) {
         // Kiểm tra listSpawner có phần tử nào không
         if (this.listSpawner.length === 0) {
@@ -85,10 +100,9 @@ const ManagerSpawner=cc.Class({
         // Lấy prefab từ danh sách
         let prefab = this.listSpawner[randomIndex];
     
-        // Tạo một object từ prefab
+
         let newNode = cc.instantiate(prefab);
-    
-        // Đặt vị trí cho object spawn
+
         newNode.setPosition(cc.v2(posX, this.maxdistanceY+180));
     
         // Thêm vào scene

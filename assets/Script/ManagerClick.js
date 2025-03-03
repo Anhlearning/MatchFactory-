@@ -4,6 +4,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+const { error } = require('console');
 const ManagerSpawner= require('ManagerSpawner');
 
 
@@ -17,6 +18,7 @@ const ManagerClick=cc.Class({
         stack:cc.Node,
         ManagerSpawner:cc.Node,
         psNode:cc.Node,
+        errorNode:cc.Node,
     },
 
     statics: {
@@ -30,13 +32,15 @@ const ManagerClick=cc.Class({
         this.countStack=0;
         this.currentContainer=this.containers[0];
         this.ps=this.psNode.getComponent(cc.ParticleSystem);
+        this.isEnd=false;
+        this.errorScr=this.errorNode.getComponent('Error');
     },
 
     start () {
     },
     
     AddObjectInContainer(node){
-        if(this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || !this.currentContainer){
+        if(this.isEnd||this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || !this.currentContainer ){
             console.log("Đã vào trong hàng đợi hoặc container");
             return ;
         }
@@ -245,13 +249,15 @@ const ManagerClick=cc.Class({
     PushObjectInStack(node){
         if(this.objectsCurrentStack.length >= 5) {
             console.log("THUA ROI HEHE !! ")
+            this.isEnd=true;
+            this.errorScr.showErrorEffect();
             return;
         }
         console.error(this.objectsCurrentStack.length);
         let targetNode= this.stack.children[this.objectsCurrentStack.length];
         this.objectsCurrentStack.push(node);
         this.HandleMoveDownTile(node.position);
-        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 30));
+        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 20));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
         cc.tween(node)
         .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
@@ -259,8 +265,8 @@ const ManagerClick=cc.Class({
     },
     SortPosInStack(){
         for(let i=0;i<this.objectsCurrentStack.length;i++){
-            let targetNode= this.stack.children[i];
-            let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 30));
+            let targetNode= this.stack.children[i];  
+            let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 20));
             let targetPos = this.objectsCurrentStack[i].parent.convertToNodeSpaceAR(containerWorldPos);
             cc.tween(this.objectsCurrentStack[i])
             .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
@@ -268,17 +274,34 @@ const ManagerClick=cc.Class({
         }
     },
     
-    HandleMoveDownTile(deletedNodes){
+    HandleMoveDownTile(deletedNodes) {
         ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
-        this.ManagerSpawner.children.forEach(otherNode => {
-            if (otherNode.position.x === deletedNodes.x && otherNode.position.y > deletedNodes.y) {
-                let newY = otherNode.position.y - 180;
-                cc.tween(otherNode)
-                    .to(0.3, { position: cc.v2(otherNode.position.x, newY) }, { easing: 'sineInOut' })
-                    .start();
-            }
+    
+        const nodesToMove = this.ManagerSpawner.children
+            .filter(otherNode => otherNode.position.x === deletedNodes.x && otherNode.position.y > deletedNodes.y)
+            .sort((a, b) => a.position.y - b.position.y); // Sắp xếp từ dưới lên
+    
+        nodesToMove.forEach((node, index) => {
+            let newY = node.position.y - 180;
+            let originScaleX = 0.3;
+            let originScaleY = 0.3;
+            cc.tween(node)
+                .to(0.3, { position: cc.v2(node.position.x, newY) }, { easing: 'sineInOut' })
+                .call(() => {
+                    if(index === nodesToMove.length - 1){
+                        this.BlockHangX=-5000;
+                    }
+                    cc.tween(node)
+                        .to(0.2, { scaleY: originScaleY * 0.85, scaleX: originScaleX * 1.15 })
+                        .to(0.2, { scaleY: originScaleY * 1.05, scaleX: originScaleX * 0.95 })
+                        .to(0.15, { scaleY: originScaleY, scaleX: originScaleX })
+                        .start();
+                })
+                .start();
         });
-    },
+    }
+    
+    
 
 });
 module.exports=ManagerClick;
