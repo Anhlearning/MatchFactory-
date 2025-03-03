@@ -45,7 +45,7 @@ const HandClick=cc.Class({
             let localPos = this.node.parent.convertToNodeSpaceAR(worldPos);
     
             cc.tween(this.node)
-                .to(0.15, { position: cc.v2(localPos.x+40, localPos.y-40) }, { easing: "sineInOut" }) // Di chuyển mượt mà
+                .to(0.5, { position: cc.v2(localPos.x+40, localPos.y-50) }, { easing: "sineInOut" }) // Di chuyển mượt mà
                 .call(() => {
                     this.anim.play();
                 })

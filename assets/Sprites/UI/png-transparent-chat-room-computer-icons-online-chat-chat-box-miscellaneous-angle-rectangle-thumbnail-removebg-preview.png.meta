@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "816301d7-842c-4ebb-8a5d-f8156c6ffce4",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 360,
+  "height": 360,
+  "platformSettings": {},
+  "subMetas": {
+    "png-transparent-chat-room-computer-icons-online-chat-chat-box-miscellaneous-angle-rectangle-thumbnail-removebg-preview": {
+      "ver": "1.0.6",
+      "uuid": "a92ed3f1-e989-4b47-a8b0-7b0b038c336c",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "816301d7-842c-4ebb-8a5d-f8156c6ffce4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0.5,
+      "trimX": 33,
+      "trimY": 33,
+      "width": 294,
+      "height": 293,
+      "rawWidth": 360,
+      "rawHeight": 360,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

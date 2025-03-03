@@ -16,6 +16,7 @@ const ManagerSpawner=cc.Class({
             default:[],
             type:[cc.String]
         },
+        stack:cc.Node,
 
     },
     statics: {
@@ -29,19 +30,27 @@ const ManagerSpawner=cc.Class({
         this.spawnObject();
     },
     spawnObject(){
-        if(this.listSpawner.length==0){
+        if (this.listSpawner.length == 0) {
             return;
         }
+        
         let heightframe = cc.winSize.height;
-        let widthframe = cc.winSize.width;
-        console.log(widthframe);
-        let startX = -widthframe / 2 + 175;
-        let startY = heightframe / 2 + 200;
-
+     
         let spacingX = 150;
         let spacingY = 180;
-
-        for(let row = 0; row < this.nodeStringList.length; row++){
+        
+        let totalCols = 0; 
+        for (let row = 0; row < this.nodeStringList.length; row++) {
+            let str = this.nodeStringList[row];
+            let numbers = str.match(/\d+/g);
+            if (numbers) {
+                totalCols = Math.max(totalCols, numbers.length);
+            }
+        }
+        let startX = -((totalCols - 1) * spacingX / 2);
+        let startY = heightframe/2 + 200;  
+        
+        for (let row = 0; row < this.nodeStringList.length; row++) {
             let str = this.nodeStringList[row];
             let numbers = str.match(/\d+/g);
             if (!numbers) continue;
@@ -51,15 +60,18 @@ const ManagerSpawner=cc.Class({
                 if (index >= 0 && index < this.listSpawner.length) {
                     let prefab = this.listSpawner[index];
                     let newNode = cc.instantiate(prefab);
-
+        
                     let posX = startX + col * spacingX;
                     let posY = startY - row * spacingY;
-                    this.maxdistanceY=Math.max(posY,this.maxdistanceY);
+        
+                    this.maxdistanceY = Math.max(posY, this.maxdistanceY);
                     newNode.setPosition(cc.v2(posX, posY));
+        
                     this.node.addChild(newNode);
-                } 
+                }
             }
         }
+        
     },
     SpawnObjectSingle(posX) {
         // Kiểm tra listSpawner có phần tử nào không

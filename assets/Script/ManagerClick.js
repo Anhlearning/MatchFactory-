@@ -16,7 +16,9 @@ const ManagerClick=cc.Class({
         containers: [cc.Node],
         stack:cc.Node,
         ManagerSpawner:cc.Node,
+        psNode:cc.Node,
     },
+
     statics: {
         instance: null,
     },    
@@ -27,6 +29,7 @@ const ManagerClick=cc.Class({
         this.countContainer=0;
         this.countStack=0;
         this.currentContainer=this.containers[0];
+        this.ps=this.psNode.getComponent(cc.ParticleSystem);
     },
 
     start () {
@@ -82,7 +85,18 @@ const ManagerClick=cc.Class({
         this.HandleObjectInContainer(node);
         this.SortPosInStack();
     },
-
+    setParentKeepWorldPositionAndScale(node, newParent) {
+        let worldPos = node.convertToWorldSpaceAR(cc.v2(0, 0));
+        let currentScale = node.scale; // Lưu scale hiện tại
+    
+        node.setParent(newParent);
+    
+        let localPos = newParent.convertToNodeSpaceAR(worldPos);
+        node.position = localPos;
+    
+        let parentScale = newParent.scale; 
+        node.scale = currentScale / parentScale; // Cân chỉnh lại scale để không bị ảnh hưởng bởi scale của newParent
+    },    
 
     HandleObjectInContainer(node){
         if(this.objectsCurrentContainer.length>=3) return;
@@ -90,33 +104,57 @@ const ManagerClick=cc.Class({
 
         this.objectsCurrentContainer.push(node);
         
-        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 0));
+        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 20));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
 
         this.HandleMoveDownTile(node.position);
         cc.tween(node)
         .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
         .call(()=>{
+                this.setParentKeepWorldPositionAndScale(node, this.containers[0]);
+
                 this.countContainer++;
                 if (this.countContainer === 3) {
-                    this.objectsCurrentContainer.forEach(node => {
-                        let targetX = node.position.x - cc.winSize.width; 
+                    this.psNode.active=true;
+                    this.ps.resetSystem();   // Phát particle
+
+                    this.ps.finished = () => {  
+                        console.log("FINISHED");
+                        this.psNode.active = false;
+                    };
+                    let initialScale = 0.3 * (1/0.6);
+                    this.objectsCurrentContainer.forEach((node,index) => {
+                        let heightframe = cc.winSize.height;
+                        let widthframe = cc.winSize.width;
+                        let outOfScreenPos = cc.v2(-widthframe, node.y); 
+                        if (heightframe < widthframe) {
+                            outOfScreenPos = cc.v2(node.x, heightframe); 
+                        }
                         cc.tween(node)
-                            .to(0.5, { position: cc.v2(targetX, node.position.y+20) }, { easing: 'sineInOut' }) 
-                            .call(() => {
-                                node.destroy(); 
+                            .to(0.25, { scale: 0.1* (1/0.6)  }, { easing: 'quadIn' }) // Thu nhỏ nhanh
+                            .by(0.4, { position: cc.v2(0, 60), scale: 0.30* (1/0.6) }, { easing: 'backOut' }) // Nảy mạnh lên, scale vượt mức ban đầu
+                            .by(0.35, { position: cc.v2(0, -60), scale: -0.15 * (1/0.6) }, { easing: 'sineIn' }) // Nhún xuống, scale về nhẹ hơn
+                            .by(0.1, { position: cc.v2(-5, 0) })
+                            .by(0.1, { position: cc.v2(10, 0) })
+                            .by(0.1, { position: cc.v2(-5, 0) })
+                            .to(0.15, { scale: initialScale }, { easing: 'sineOut' }) 
+                            .call(()=>{
+                                if (index === this.objectsCurrentContainer.length - 1) {
+                                    this.countContainer = 0;
+                                    let copiedList = [...this.objectsCurrentContainer];
+                                    this.objectsCurrentContainer = [];
+                                    this.HandleNextContainer(copiedList);
+                                }
                             })
                             .start();
-                    });
-                    this.countContainer=0;
-                    this.objectsCurrentContainer=[];
-                    this.HandleNextContainer()
+                    });                    
+
                 }
             })
             .start();
     },
 
-    HandleNextContainer(){
+    HandleNextContainer(destroyList){
         let firstContainer = this.containers[0]; 
         let secondContainer = this.containers[1]; 
         let thirdContainer = this.containers[2];
@@ -126,23 +164,28 @@ const ManagerClick=cc.Class({
         let lastContainerPos=lastContainer.position;
         let firstContainerPos = firstContainer.position; 
         let secondContainerPos=secondContainer.position;
-        let screenWithd=cc.winSize.width;
-        let outOfScreenPos = cc.v2(firstContainerPos.x - screenWithd, firstContainerPos.y); 
 
+
+        let heightframe = cc.winSize.height;
+        let widthframe = cc.winSize.width;
+        let outOfScreenPos = cc.v2(-widthframe, firstContainer.y); 
+        if (heightframe < widthframe) {
+            // Nếu màn hình dọc -> di chuyển lên trên
+            outOfScreenPos = cc.v2(firstContainer.x, heightframe); 
+        }
         cc.tween(firstContainer)
         .to(0.5, { position: outOfScreenPos }, { easing: "sineInOut" })
         .call(() => {
+            destroyList.forEach((node,index) => {
+                node.destroy();
+            });
             firstContainer.opacity = 0; 
             this.containers.shift();
             firstContainer.position = cc.v2(lastContainerPos.x, lastContainerPos.y);
-            
-
             firstContainer.opacity = 255; 
             this.containers.push(firstContainer);
         })
         .start();
-
-    
         cc.tween(secondContainer)
             .to(0.5, { position: firstContainerPos }, { easing: "sineInOut" })
             .call(()=>{
