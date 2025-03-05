@@ -1,0 +1,485 @@
+{
+  "ver": "1.1.3",
+  "uuid": "555d8b0b-dae6-46cb-886a-5a00cef505a0",
+  "importer": "fbx",
+  "scaleFactor": 1,
+  "boneCount": 0,
+  "precomputeJointMatrix": false,
+  "animationFrameRate": 30,
+  "subMetas": {
+    "buffer.bin": {
+      "ver": "1.0.2",
+      "uuid": "34a6e808-1731-4383-be67-e97725936e64",
+      "importer": "buffer",
+      "name": "buffer.bin",
+      "subMetas": {}
+    },
+    "Basket 006.mesh": {
+      "ver": "1.0.3",
+      "uuid": "bcb2552b-f732-42d4-b532-fcf8a0f3d06d",
+      "importer": "mesh",
+      "verts": 2960,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0192297883331776,
+        "y": -0.128248244524002,
+        "z": -0.00145059253554791
+      },
+      "maxPos": {
+        "x": 0.127621248364449,
+        "y": 0.0192628242075443,
+        "z": 0.0940023213624954
+      },
+      "name": "Basket 006.mesh",
+      "subMetas": {}
+    },
+    "Basket 015.mesh": {
+      "ver": "1.0.3",
+      "uuid": "ae370346-786e-4e4a-8d23-c728b5428c92",
+      "importer": "mesh",
+      "verts": 2952,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0643578618764877,
+        "y": -0.257928609848022,
+        "z": -0.00454109255224466
+      },
+      "maxPos": {
+        "x": 0.427120059728622,
+        "y": 0.0387407653033733,
+        "z": 0.294275045394897
+      },
+      "name": "Basket 015.mesh",
+      "subMetas": {}
+    },
+    "Basket 013.mesh": {
+      "ver": "1.0.3",
+      "uuid": "26668446-4d51-414c-9749-6a6e4b967de1",
+      "importer": "mesh",
+      "verts": 2960,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0192297883331776,
+        "y": -0.128248244524002,
+        "z": -0.00145059253554791
+      },
+      "maxPos": {
+        "x": 0.127621248364449,
+        "y": 0.0192628242075443,
+        "z": 0.0940023213624954
+      },
+      "name": "Basket 013.mesh",
+      "subMetas": {}
+    },
+    "Basket 014.mesh": {
+      "ver": "1.0.3",
+      "uuid": "00bd383a-5e9d-4bb6-b267-cf67625656a0",
+      "importer": "mesh",
+      "verts": 2956,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0542862005531788,
+        "y": -0.224210008978844,
+        "z": -0.00301877898164093
+      },
+      "maxPos": {
+        "x": 0.360278129577637,
+        "y": 0.0336762331426144,
+        "z": 0.19562503695488
+      },
+      "name": "Basket 014.mesh",
+      "subMetas": {}
+    },
+    "Basket 004.mesh": {
+      "ver": "1.0.3",
+      "uuid": "df9e8ac1-05cb-456e-bb52-53c365c5d1dd",
+      "importer": "mesh",
+      "verts": 2952,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0643578618764877,
+        "y": -0.257928609848022,
+        "z": -0.00454109255224466
+      },
+      "maxPos": {
+        "x": 0.427120059728622,
+        "y": 0.0387407653033733,
+        "z": 0.294275045394897
+      },
+      "name": "Basket 004.mesh",
+      "subMetas": {}
+    },
+    "Basket 008.mesh": {
+      "ver": "1.0.3",
+      "uuid": "2d654613-a7f9-455b-bcd3-60a43b1e032a",
+      "importer": "mesh",
+      "verts": 2956,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0542862005531788,
+        "y": -0.224210008978844,
+        "z": -0.00301877898164093
+      },
+      "maxPos": {
+        "x": 0.360278129577637,
+        "y": 0.0336762331426144,
+        "z": 0.19562503695488
+      },
+      "name": "Basket 008.mesh",
+      "subMetas": {}
+    },
+    "Basket 012.mesh": {
+      "ver": "1.0.3",
+      "uuid": "1b36b9db-8c8a-402c-beef-d5367a3b633f",
+      "importer": "mesh",
+      "verts": 2960,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0192297883331776,
+        "y": -0.128248244524002,
+        "z": -0.00145059253554791
+      },
+      "maxPos": {
+        "x": 0.127621248364449,
+        "y": 0.0192628242075443,
+        "z": 0.0940023213624954
+      },
+      "name": "Basket 012.mesh",
+      "subMetas": {}
+    },
+    "Basket 016.mesh": {
+      "ver": "1.0.3",
+      "uuid": "4217f51e-4660-4f2a-b981-a953c1ef3e8e",
+      "importer": "mesh",
+      "verts": 2952,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0643578618764877,
+        "y": -0.257928609848022,
+        "z": -0.00454109255224466
+      },
+      "maxPos": {
+        "x": 0.427120059728622,
+        "y": 0.0387407653033733,
+        "z": 0.294275045394897
+      },
+      "name": "Basket 016.mesh",
+      "subMetas": {}
+    },
+    "Basket 005.mesh": {
+      "ver": "1.0.3",
+      "uuid": "880bfd04-615d-4836-9911-fe49003c40bb",
+      "importer": "mesh",
+      "verts": 2956,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0542862005531788,
+        "y": -0.224210008978844,
+        "z": -0.00301877898164093
+      },
+      "maxPos": {
+        "x": 0.360278129577637,
+        "y": 0.0336762331426144,
+        "z": 0.19562503695488
+      },
+      "name": "Basket 005.mesh",
+      "subMetas": {}
+    },
+    "Basket 009.mesh": {
+      "ver": "1.0.3",
+      "uuid": "cfce9f3d-8fa1-41f6-994b-12bacb15ee87",
+      "importer": "mesh",
+      "verts": 2960,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0192297883331776,
+        "y": -0.128248244524002,
+        "z": -0.00145059253554791
+      },
+      "maxPos": {
+        "x": 0.127621248364449,
+        "y": 0.0192628242075443,
+        "z": 0.0940023213624954
+      },
+      "name": "Basket 009.mesh",
+      "subMetas": {}
+    },
+    "Basket 011.mesh": {
+      "ver": "1.0.3",
+      "uuid": "d6e0ddf7-8dd7-4648-bc3f-dd4a7295f25f",
+      "importer": "mesh",
+      "verts": 2956,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0542862005531788,
+        "y": -0.224210008978844,
+        "z": -0.00301877898164093
+      },
+      "maxPos": {
+        "x": 0.360278129577637,
+        "y": 0.0336762331426144,
+        "z": 0.19562503695488
+      },
+      "name": "Basket 011.mesh",
+      "subMetas": {}
+    },
+    "Basket 017.mesh": {
+      "ver": "1.0.3",
+      "uuid": "3a961e0f-5cf7-499b-b00a-a00a384aa178",
+      "importer": "mesh",
+      "verts": 2952,
+      "tris": 2828,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0643578618764877,
+        "y": -0.257928609848022,
+        "z": -0.00454109255224466
+      },
+      "maxPos": {
+        "x": 0.427120059728622,
+        "y": 0.0387407653033733,
+        "z": 0.294275045394897
+      },
+      "name": "Basket 017.mesh",
+      "subMetas": {}
+    },
+    "Basket.prefab": {
+      "ver": "1.3.2",
+      "uuid": "d54e4745-8fb2-49e9-91c5-d377a08a7007",
+      "importer": "prefab",
+      "optimizationPolicy": "AUTO",
+      "asyncLoadAssets": false,
+      "readonly": true,
+      "content": [
+        {
+          "__type__": "cc.Prefab",
+          "_name": "",
+          "_objFlags": 0,
+          "data": {
+            "__id__": 1
+          }
+        },
+        {
+          "__type__": "cc.Node",
+          "_name": "Sprite",
+          "_objFlags": 0,
+          "_opacity": 255,
+          "_color": {
+            "__type__": "cc.Color",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+          },
+          "_cascadeOpacityEnabled": true,
+          "_parent": null,
+          "_anchorPoint": {
+            "__type__": "cc.Vec2",
+            "x": 0.5,
+            "y": 0.5
+          },
+          "_contentSize": {
+            "__type__": "cc.Size",
+            "width": 40,
+            "height": 36
+          },
+          "_children": [],
+          "_skewX": 0,
+          "_skewY": 0,
+          "_localZOrder": 0,
+          "_globalZOrder": 0,
+          "_tag": -1,
+          "_opacityModifyRGB": false,
+          "_reorderChildDirty": false,
+          "_id": "",
+          "_active": true,
+          "_components": [
+            {
+              "__id__": 2
+            }
+          ],
+          "_prefab": {
+            "__id__": 3
+          },
+          "_eulerAngles": {
+            "__type__": "cc.Vec3",
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "_trs": {
+            "__type__": "TypedArray",
+            "ctor": "Float64Array",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "__type__": "cc.Sprite",
+          "_name": "",
+          "_objFlags": 0,
+          "node": {
+            "__id__": 1
+          },
+          "_enabled": true,
+          "_spriteFrame": {
+            "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+          },
+          "_type": 0,
+          "_sizeMode": 1,
+          "_fillType": 0,
+          "_fillCenter": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_fillStart": 0,
+          "_fillRange": 0,
+          "_isTrimmedMode": true,
+          "_srcBlendFactor": 770,
+          "_dstBlendFactor": 771,
+          "_atlas": null
+        },
+        {
+          "__type__": "cc.PrefabInfo",
+          "root": {
+            "__id__": 1
+          },
+          "asset": null,
+          "fileId": "d7118yAG5lKybkFOAh8koPL"
+        }
+      ],
+      "name": "Basket.prefab",
+      "subMetas": {}
+    },
+    "Material #7.mtl": {
+      "ver": "1.0.5",
+      "uuid": "3bad86ff-0ed1-4c9b-a8c1-1e30f2175da7",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "Material #7.mtl",
+      "subMetas": {}
+    },
+    "Material #8.mtl": {
+      "ver": "1.0.5",
+      "uuid": "ef36f6be-e647-4ed1-b58b-4fea7410f183",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "Material #8.mtl",
+      "subMetas": {}
+    },
+    "Material #5.mtl": {
+      "ver": "1.0.5",
+      "uuid": "b00dcad3-1081-4d50-83e5-bfe8ee51c5db",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "Material #5.mtl",
+      "subMetas": {}
+    }
+  }
+}

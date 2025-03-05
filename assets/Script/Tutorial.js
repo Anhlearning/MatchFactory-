@@ -33,7 +33,11 @@ const Tutorials = cc.Class({
     },
 
     start () {
-       this.SequenHandClick();
+        setTimeout(() => {
+            console.log("TUT HAND ACTIVE ");
+            //this.node.active=true;
+            this.SequenHandClick();
+        }, 200);
     },
 
     setFruitPositionAll(){

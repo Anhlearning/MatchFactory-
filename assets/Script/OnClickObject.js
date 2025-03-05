@@ -15,25 +15,27 @@ cc.Class({
         originalColor: {
             default: new cc.Color()
         },
+        camera3D:cc.Camera,
        
     },
-    onLoad() { 
-        this.originScaleX = this.node.scaleX;
-        this.originScaleY = this.node.scaleY;
-    }
     
-    ,
+    onLoad() {
+        this.camera3D = cc.find("Root/Camera3D").getComponent(cc.Camera);// Tự tìm theo tên
+        if (!this.camera3D) {
+            console.error("Không tìm thấy Camera3D trong Scene!");
+            return;
+        }
+    },
     start() {
-        this.node.on(cc.Node.EventType.TOUCH_START, this.onMouseDown, this);
+        this.node.active = true;  // Đảm bảo đang bật
     },
 
-    onMouseDown() {
-        if(!this.CheckIsObjectMinY()) return ;
-        ManagerClick.instance.AddObjectInContainer(this.node);
-
+    HandleClickObject() {
+        if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) return ;
+        //ManagerClick.instance.AddObjectInContainer(this.node);
     },
     pieceBouyingAnimating(piece) {
-        let originScaleY = this.originScaleY;   // dùng từ node chính của script
+        let originScaleY = this.originScaleY;   
         let originScaleX = this.originScaleX;
         cc.tween(piece)
         .to(0.2, { scaleX: originScaleX + 0.15, scaleY: originScaleY - 0.15 })
@@ -41,20 +43,25 @@ cc.Class({
         .to(0.15, { scaleY: originScaleY, scaleX: originScaleX })
         .start();
     },
-    CheckIsObjectMinY(){
+    CheckIsObjectMinZ() {
         let parent = this.node.parent;
-        if (!parent) return false; // Nếu không có parent, trả về false
-
-        let minY = this.node.position.y;
-
+        if (!parent) return false; 
+    
+        // Lấy vị trí Z của chính object hiện tại
+        let maxZ = this.node.position.z;
         parent.children.forEach(child => {
-            if (child !== this.node && child.position.y < minY && !ManagerClick.instance.objectsCurrentContainer.includes(child) && !ManagerClick.instance.objectsCurrentStack.includes(child)) {
-                minY = child.position.y;
+            if (child !== this.node &&
+                child.position.z > maxZ /*&& 
+                // !ManagerClick.instance.objectsCurrentContainer.includes(child) && 
+                // !ManagerClick.instance.objectsCurrentStack.includes(child))*/
+            )
+            {
+                maxZ = child.position.z;
             }
         });
-
-        return this.node.position.y === minY;
+        return this.node.position.z === maxZ;
     },
+    
 
     resetColor() {
         this.node.color = this.originalColor;

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "811560c4-adf1-4bb0-a83c-178ea744300b",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 2048,
+  "height": 2048,
+  "platformSettings": {},
+  "subMetas": {
+    "LP_Atlas_Color_Palette_V10_00": {
+      "ver": "1.0.6",
+      "uuid": "3e1574d3-41f7-440a-92fd-12c27b6fd7cc",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "811560c4-adf1-4bb0-a83c-178ea744300b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 2048,
+      "height": 2048,
+      "rawWidth": 2048,
+      "rawHeight": 2048,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

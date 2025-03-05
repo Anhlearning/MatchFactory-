@@ -275,21 +275,18 @@ const ManagerClick=cc.Class({
     },
     
     HandleMoveDownTile(deletedNodes) {
-        ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
-    
         const nodesToMove = this.ManagerSpawner.children
             .filter(otherNode => otherNode.position.x === deletedNodes.x && otherNode.position.y > deletedNodes.y)
             .sort((a, b) => a.position.y - b.position.y); // Sắp xếp từ dưới lên
-    
         nodesToMove.forEach((node, index) => {
-            let newY = node.position.y - 180;
+            let newY = node.position.y - 150;
             let originScaleX = 0.3;
             let originScaleY = 0.3;
             cc.tween(node)
                 .to(0.3, { position: cc.v2(node.position.x, newY) }, { easing: 'sineInOut' })
                 .call(() => {
                     if(index === nodesToMove.length - 1){
-                        this.BlockHangX=-5000;
+                        ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
                     }
                     cc.tween(node)
                         .to(0.2, { scaleY: originScaleY * 0.85, scaleX: originScaleX * 1.15 })

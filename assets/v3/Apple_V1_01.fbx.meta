@@ -1,0 +1,1270 @@
+{
+  "ver": "1.1.3",
+  "uuid": "cd407c1e-d7ab-4f2f-bf24-a1cd94bab72c",
+  "importer": "fbx",
+  "scaleFactor": 1,
+  "boneCount": 0,
+  "precomputeJointMatrix": false,
+  "animationFrameRate": 30,
+  "subMetas": {
+    "buffer.bin": {
+      "ver": "1.0.2",
+      "uuid": "33458e4b-816e-435c-9785-9314cee9e069",
+      "importer": "buffer",
+      "name": "buffer.bin",
+      "subMetas": {}
+    },
+    "squid_00.mesh": {
+      "ver": "1.0.3",
+      "uuid": "420b1f63-75a1-482d-87eb-f5658bb917df",
+      "importer": "mesh",
+      "verts": 24,
+      "tris": 12,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_color0",
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.187734678387642,
+        "y": 0.00515417661517859,
+        "z": -0.119397886097431
+      },
+      "maxPos": {
+        "x": 0.187734708189964,
+        "y": 0.0064694732427597,
+        "z": 0.119397886097431
+      },
+      "name": "squid_00.mesh",
+      "subMetas": {}
+    },
+    "squid_01.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c67b4158-55f5-44f4-97b8-01918e875e5d",
+      "importer": "mesh",
+      "verts": 2065,
+      "tris": 1017,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -5.06639485919891e-9,
+        "z": -0.182169109582901
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.780697166919708,
+        "z": 0.186942681670189
+      },
+      "name": "squid_01.mesh",
+      "subMetas": {}
+    },
+    "squid_02.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c9d82ffd-4614-465d-942b-7fca80cc238d",
+      "importer": "mesh",
+      "verts": 2065,
+      "tris": 1017,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -5.06639485919891e-9,
+        "z": -0.182169109582901
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.780697166919708,
+        "z": 0.186942681670189
+      },
+      "name": "squid_02.mesh",
+      "subMetas": {}
+    },
+    "squid_03.mesh": {
+      "ver": "1.0.3",
+      "uuid": "aa66f1d6-ad93-460b-90ab-ee28380be4c9",
+      "importer": "mesh",
+      "verts": 2065,
+      "tris": 1017,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -5.06639485919891e-9,
+        "z": -0.182169109582901
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.780697166919708,
+        "z": 0.186942681670189
+      },
+      "name": "squid_03.mesh",
+      "subMetas": {}
+    },
+    "squid_04.mesh": {
+      "ver": "1.0.3",
+      "uuid": "db0ddafd-926b-429a-86b1-abda24a6cc61",
+      "importer": "mesh",
+      "verts": 390,
+      "tris": 432,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.103764690458775,
+        "y": 0.00325489044189453,
+        "z": -0.103136517107487
+      },
+      "maxPos": {
+        "x": 0.103764705359936,
+        "y": 0.218517452478409,
+        "z": 0.103136517107487
+      },
+      "name": "squid_04.mesh",
+      "subMetas": {}
+    },
+    "squid_05.mesh": {
+      "ver": "1.0.3",
+      "uuid": "114fccdf-11f9-4707-9395-966e52f7e975",
+      "importer": "mesh",
+      "verts": 350,
+      "tris": 412,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.103764690458775,
+        "y": 0.00325489044189453,
+        "z": -0.103136517107487
+      },
+      "maxPos": {
+        "x": 0.103764705359936,
+        "y": 0.218517452478409,
+        "z": 0.103136517107487
+      },
+      "name": "squid_05.mesh",
+      "subMetas": {}
+    },
+    "squid_06.mesh": {
+      "ver": "1.0.3",
+      "uuid": "ef6f9a8f-0935-43b9-b1dd-a7105c3799d2",
+      "importer": "mesh",
+      "verts": 430,
+      "tris": 460,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.103764690458775,
+        "y": 0.00325489044189453,
+        "z": -0.103136442601681
+      },
+      "maxPos": {
+        "x": 0.103764705359936,
+        "y": 0.218517452478409,
+        "z": 0.103136442601681
+      },
+      "name": "squid_06.mesh",
+      "subMetas": {}
+    },
+    "squid_07.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c471ec82-8464-42c9-8c02-9ac61747a0b9",
+      "importer": "mesh",
+      "verts": 350,
+      "tris": 412,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.103764690458775,
+        "y": 0.00325489044189453,
+        "z": -0.103136517107487
+      },
+      "maxPos": {
+        "x": 0.103764705359936,
+        "y": 0.218517452478409,
+        "z": 0.103136517107487
+      },
+      "name": "squid_07.mesh",
+      "subMetas": {}
+    },
+    "squid_08.mesh": {
+      "ver": "1.0.3",
+      "uuid": "ba3e2a49-ed49-445a-a61f-8d25510e7731",
+      "importer": "mesh",
+      "verts": 330,
+      "tris": 400,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.103764690458775,
+        "y": 0.00325489044189453,
+        "z": -0.103136517107487
+      },
+      "maxPos": {
+        "x": 0.103764705359936,
+        "y": 0.218517452478409,
+        "z": 0.103136517107487
+      },
+      "name": "squid_08.mesh",
+      "subMetas": {}
+    },
+    "squid_09.mesh": {
+      "ver": "1.0.3",
+      "uuid": "b9c8680a-5206-4bce-894b-8bfca1d1597f",
+      "importer": "mesh",
+      "verts": 102,
+      "tris": 100,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.132566377520561,
+        "y": -9.53674295089968e-9,
+        "z": -0.139388591051102
+      },
+      "maxPos": {
+        "x": 0.132566452026367,
+        "y": 0.0551278106868267,
+        "z": 0.139388561248779
+      },
+      "name": "squid_09.mesh",
+      "subMetas": {}
+    },
+    "squid_10.mesh": {
+      "ver": "1.0.3",
+      "uuid": "03fbc321-7649-457b-b5ff-654262d09e0d",
+      "importer": "mesh",
+      "verts": 102,
+      "tris": 100,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.132566377520561,
+        "y": -9.53674295089968e-9,
+        "z": -0.139388591051102
+      },
+      "maxPos": {
+        "x": 0.132566452026367,
+        "y": 0.0551278106868267,
+        "z": 0.139388561248779
+      },
+      "name": "squid_10.mesh",
+      "subMetas": {}
+    },
+    "squid_11.mesh": {
+      "ver": "1.0.3",
+      "uuid": "5f500157-8a95-4835-bc0b-63282292e6fc",
+      "importer": "mesh",
+      "verts": 102,
+      "tris": 100,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.132566377520561,
+        "y": -9.53674295089968e-9,
+        "z": -0.139388591051102
+      },
+      "maxPos": {
+        "x": 0.132566452026367,
+        "y": 0.0551278106868267,
+        "z": 0.139388561248779
+      },
+      "name": "squid_11.mesh",
+      "subMetas": {}
+    },
+    "squid_12.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c22c02c5-66ee-4872-9a6e-c63a1d55049f",
+      "importer": "mesh",
+      "verts": 102,
+      "tris": 100,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.132566377520561,
+        "y": -9.53674295089968e-9,
+        "z": -0.139388591051102
+      },
+      "maxPos": {
+        "x": 0.132566452026367,
+        "y": 0.0551278106868267,
+        "z": 0.139388561248779
+      },
+      "name": "squid_12.mesh",
+      "subMetas": {}
+    },
+    "squid_13.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c0675fac-ff63-498c-8a14-987e3c3f2323",
+      "importer": "mesh",
+      "verts": 92,
+      "tris": 100,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.132566377520561,
+        "y": -9.53674295089968e-9,
+        "z": -0.139388591051102
+      },
+      "maxPos": {
+        "x": 0.132566452026367,
+        "y": 0.129056885838509,
+        "z": 0.139388561248779
+      },
+      "name": "squid_13.mesh",
+      "subMetas": {}
+    },
+    "squid_14.mesh": {
+      "ver": "1.0.3",
+      "uuid": "7d646cc3-fd7d-46ff-9996-c22821e378bc",
+      "importer": "mesh",
+      "verts": 92,
+      "tris": 100,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.132566377520561,
+        "y": -9.53674295089968e-9,
+        "z": -0.139388591051102
+      },
+      "maxPos": {
+        "x": 0.132566452026367,
+        "y": 0.129056885838509,
+        "z": 0.139388561248779
+      },
+      "name": "squid_14.mesh",
+      "subMetas": {}
+    },
+    "squid_15.mesh": {
+      "ver": "1.0.3",
+      "uuid": "d4feeea1-635b-4d1d-8a27-9a0e85149671",
+      "importer": "mesh",
+      "verts": 2221,
+      "tris": 3156,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.271622836589813,
+        "y": -0.00119174749124795,
+        "z": -0.165906965732574
+      },
+      "maxPos": {
+        "x": 0.271622836589813,
+        "y": 1.18186783790588,
+        "z": 0.164217367768288
+      },
+      "name": "squid_15.mesh",
+      "subMetas": {}
+    },
+    "squid_16.mesh": {
+      "ver": "1.0.3",
+      "uuid": "0cc8aa00-44d9-4472-a660-f109d93d0e5b",
+      "importer": "mesh",
+      "verts": 614,
+      "tris": 628,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.298153460025787,
+        "y": 0.0103455735370517,
+        "z": -0.321255832910538
+      },
+      "maxPos": {
+        "x": 0.298153460025787,
+        "y": 0.644179463386536,
+        "z": 0.306786298751831
+      },
+      "name": "squid_16.mesh",
+      "subMetas": {}
+    },
+    "squid_17.mesh": {
+      "ver": "1.0.3",
+      "uuid": "fac55bfa-8cb1-47e7-b25b-1cde6779f96e",
+      "importer": "mesh",
+      "verts": 1987,
+      "tris": 930,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -5.06639485919891e-9,
+        "z": -0.194061279296875
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.780697166919708,
+        "z": 0.168781951069832
+      },
+      "name": "squid_17.mesh",
+      "subMetas": {}
+    },
+    "squid_18.mesh": {
+      "ver": "1.0.3",
+      "uuid": "b6e401fc-52f5-4e95-979a-517d8ccc16ab",
+      "importer": "mesh",
+      "verts": 1792,
+      "tris": 840,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -9.99999993922529e-9,
+        "z": -0.194061279296875
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.773072957992554,
+        "z": 0.233420103788376
+      },
+      "name": "squid_18.mesh",
+      "subMetas": {}
+    },
+    "squid_19.mesh": {
+      "ver": "1.0.3",
+      "uuid": "e54b70f2-ba2a-4e0b-bb22-929b1db6f64e",
+      "importer": "mesh",
+      "verts": 3554,
+      "tris": 1656,
+      "submeshes": 3,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -9.99999993922529e-9,
+        "z": -0.194061279296875
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.792167007923126,
+        "z": 0.212624832987785
+      },
+      "name": "squid_19.mesh",
+      "subMetas": {}
+    },
+    "squid_20.mesh": {
+      "ver": "1.0.3",
+      "uuid": "a943eb8d-d44b-41e3-b469-5b873839edc8",
+      "importer": "mesh",
+      "verts": 2099,
+      "tris": 984,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -9.99999993922529e-9,
+        "z": -0.194061279296875
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.788565039634705,
+        "z": 0.256393611431122
+      },
+      "name": "squid_20.mesh",
+      "subMetas": {}
+    },
+    "squid_21.mesh": {
+      "ver": "1.0.3",
+      "uuid": "f9be7c72-2eb8-4acb-8eed-5a89dcfd9e47",
+      "importer": "mesh",
+      "verts": 2426,
+      "tris": 1042,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -9.99999993922529e-9,
+        "z": -0.194061279296875
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 1.05396556854248,
+        "z": 0.20262385904789
+      },
+      "name": "squid_21.mesh",
+      "subMetas": {}
+    },
+    "squid_22.mesh": {
+      "ver": "1.0.3",
+      "uuid": "d87eb1a0-dff0-4a57-9234-075ffe47d90e",
+      "importer": "mesh",
+      "verts": 1381,
+      "tris": 756,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -9.99999993922529e-9,
+        "z": -0.211868718266487
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.78571343421936,
+        "z": 0.121095441281796
+      },
+      "name": "squid_22.mesh",
+      "subMetas": {}
+    },
+    "squid_23.mesh": {
+      "ver": "1.0.3",
+      "uuid": "4e5abdcd-8b01-4ce6-933b-4d0914310d96",
+      "importer": "mesh",
+      "verts": 1604,
+      "tris": 796,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.276375114917755,
+        "y": -9.99999993922529e-9,
+        "z": -0.258596032857895
+      },
+      "maxPos": {
+        "x": 0.276375114917755,
+        "y": 0.768693685531616,
+        "z": 0.112531743943691
+      },
+      "name": "squid_23.mesh",
+      "subMetas": {}
+    },
+    "squid_24.mesh": {
+      "ver": "1.0.3",
+      "uuid": "f8ea889e-516f-42a8-ab3b-3c02e92fef46",
+      "importer": "mesh",
+      "verts": 292,
+      "tris": 166,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.678696513175964,
+        "y": -0.00124112004414201,
+        "z": -0.3985995054245
+      },
+      "maxPos": {
+        "x": 0.616298794746399,
+        "y": 0.586886644363403,
+        "z": 0.381872057914734
+      },
+      "name": "squid_24.mesh",
+      "subMetas": {}
+    },
+    "Apple_V1_00.mesh": {
+      "ver": "1.0.3",
+      "uuid": "95f8ac8f-5b6d-40a2-988e-4600ad97d328",
+      "importer": "mesh",
+      "verts": 585,
+      "tris": 948,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0",
+          "a_uv1"
+        ]
+      ],
+      "minPos": {
+        "x": -0.155680388212204,
+        "y": -0.000411534419981763,
+        "z": -0.155706286430359
+      },
+      "maxPos": {
+        "x": 0.155680388212204,
+        "y": 0.34897044301033,
+        "z": 0.156000569462776
+      },
+      "name": "Apple_V1_00.mesh",
+      "subMetas": {}
+    },
+    "Apple_V1_01.prefab": {
+      "ver": "1.3.2",
+      "uuid": "9fdf5ed3-e45a-4305-9a1e-cb629d91868e",
+      "importer": "prefab",
+      "optimizationPolicy": "AUTO",
+      "asyncLoadAssets": false,
+      "readonly": true,
+      "content": [
+        {
+          "__type__": "cc.Prefab",
+          "_name": "",
+          "_objFlags": 0,
+          "data": {
+            "__id__": 1
+          }
+        },
+        {
+          "__type__": "cc.Node",
+          "_name": "Sprite",
+          "_objFlags": 0,
+          "_opacity": 255,
+          "_color": {
+            "__type__": "cc.Color",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+          },
+          "_cascadeOpacityEnabled": true,
+          "_parent": null,
+          "_anchorPoint": {
+            "__type__": "cc.Vec2",
+            "x": 0.5,
+            "y": 0.5
+          },
+          "_contentSize": {
+            "__type__": "cc.Size",
+            "width": 40,
+            "height": 36
+          },
+          "_children": [],
+          "_skewX": 0,
+          "_skewY": 0,
+          "_localZOrder": 0,
+          "_globalZOrder": 0,
+          "_tag": -1,
+          "_opacityModifyRGB": false,
+          "_reorderChildDirty": false,
+          "_id": "",
+          "_active": true,
+          "_components": [
+            {
+              "__id__": 2
+            }
+          ],
+          "_prefab": {
+            "__id__": 3
+          },
+          "_eulerAngles": {
+            "__type__": "cc.Vec3",
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "_trs": {
+            "__type__": "TypedArray",
+            "ctor": "Float64Array",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "__type__": "cc.Sprite",
+          "_name": "",
+          "_objFlags": 0,
+          "node": {
+            "__id__": 1
+          },
+          "_enabled": true,
+          "_spriteFrame": {
+            "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+          },
+          "_type": 0,
+          "_sizeMode": 1,
+          "_fillType": 0,
+          "_fillCenter": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_fillStart": 0,
+          "_fillRange": 0,
+          "_isTrimmedMode": true,
+          "_srcBlendFactor": 770,
+          "_dstBlendFactor": 771,
+          "_atlas": null
+        },
+        {
+          "__type__": "cc.PrefabInfo",
+          "root": {
+            "__id__": 1
+          },
+          "asset": null,
+          "fileId": "d7118yAG5lKybkFOAh8koPL"
+        }
+      ],
+      "name": "Apple_V1_01.prefab",
+      "subMetas": {}
+    },
+    "squid_game_props1.mtl": {
+      "ver": "1.0.5",
+      "uuid": "073d2956-b182-41d6-a1d8-46691833d7b4",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "squid_game_props1.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.mtl": {
+      "ver": "1.0.5",
+      "uuid": "4242a810-181f-43a8-90e2-b66b1254102b",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.001.mtl": {
+      "ver": "1.0.5",
+      "uuid": "aa53f1d3-6741-4f65-8cac-afe6b7efa8fd",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.001.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.002.mtl": {
+      "ver": "1.0.5",
+      "uuid": "198e6406-d92c-40f2-adc7-1d2a9cc95f7b",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.002.mtl",
+      "subMetas": {}
+    },
+    "texture_main.mtl": {
+      "ver": "1.0.5",
+      "uuid": "54d9c291-e37c-45cb-ae23-54fa7f35e972",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.mtl",
+      "subMetas": {}
+    },
+    "texture_main.001.mtl": {
+      "ver": "1.0.5",
+      "uuid": "2a95ef80-c5c9-43b0-9852-a62253649837",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.001.mtl",
+      "subMetas": {}
+    },
+    "texture_main.002.mtl": {
+      "ver": "1.0.5",
+      "uuid": "d79287a7-10de-455f-b707-a02e2f91002c",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.002.mtl",
+      "subMetas": {}
+    },
+    "texture_main.003.mtl": {
+      "ver": "1.0.5",
+      "uuid": "bc0eb2f5-a821-4c07-b4a5-bae91484ae34",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.003.mtl",
+      "subMetas": {}
+    },
+    "texture_main.004.mtl": {
+      "ver": "1.0.5",
+      "uuid": "5bddac82-e591-4457-812f-9d303cc6225f",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.004.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.003.mtl": {
+      "ver": "1.0.5",
+      "uuid": "30635212-ce28-4747-b6a9-697b2b0972f5",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.003.mtl",
+      "subMetas": {}
+    },
+    "texture_main.005.mtl": {
+      "ver": "1.0.5",
+      "uuid": "f47b98c7-c798-4e3a-8085-e8f86a5c0475",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.005.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.004.mtl": {
+      "ver": "1.0.5",
+      "uuid": "da9a297d-8b94-4f84-b9db-d8a262799a0a",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.004.mtl",
+      "subMetas": {}
+    },
+    "texture_main.006.mtl": {
+      "ver": "1.0.5",
+      "uuid": "c08fdf51-9d95-4e89-98ab-a2ffbd87fab2",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.006.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.005.mtl": {
+      "ver": "1.0.5",
+      "uuid": "28f050fb-18b1-4a79-aa12-306ebb880b4e",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.005.mtl",
+      "subMetas": {}
+    },
+    "texture_main.007.mtl": {
+      "ver": "1.0.5",
+      "uuid": "3b655c21-8f45-484a-88fa-3ce70bad4e53",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.007.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.006.mtl": {
+      "ver": "1.0.5",
+      "uuid": "90dbcca0-8a5e-49cd-848c-83a5cf97f89e",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.006.mtl",
+      "subMetas": {}
+    },
+    "texture_main.008.mtl": {
+      "ver": "1.0.5",
+      "uuid": "0f827a6a-93be-4bc2-9dda-6f6e457f496e",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.008.mtl",
+      "subMetas": {}
+    },
+    "texture_main.009.mtl": {
+      "ver": "1.0.5",
+      "uuid": "f2afaf53-190e-4dbc-bb3b-28aa3f4869d5",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.009.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.007.mtl": {
+      "ver": "1.0.5",
+      "uuid": "ebbb54ad-94e6-4567-a345-35dec8e855f2",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.007.mtl",
+      "subMetas": {}
+    },
+    "texture_main.010.mtl": {
+      "ver": "1.0.5",
+      "uuid": "7d2d44d2-1103-4f99-a5bf-94be351c9b9a",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.010.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.008.mtl": {
+      "ver": "1.0.5",
+      "uuid": "9f0157d4-ada6-4e59-ad97-4c6618b644ac",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.008.mtl",
+      "subMetas": {}
+    },
+    "doll1.mtl": {
+      "ver": "1.0.5",
+      "uuid": "9259326a-d8bf-4e5f-8ac0-03522fb4b3bd",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "doll1.mtl",
+      "subMetas": {}
+    },
+    "texture_main.011.mtl": {
+      "ver": "1.0.5",
+      "uuid": "96dfb05c-d91e-40e5-b3a6-c31c89779752",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.011.mtl",
+      "subMetas": {}
+    },
+    "texture_main.012.mtl": {
+      "ver": "1.0.5",
+      "uuid": "38f2e694-e006-49f7-ba23-d98f73da6056",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.012.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.009.mtl": {
+      "ver": "1.0.5",
+      "uuid": "1a22ad8b-b95a-44c2-b007-bdeb590e7cf4",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.009.mtl",
+      "subMetas": {}
+    },
+    "texture_main.013.mtl": {
+      "ver": "1.0.5",
+      "uuid": "cc488be4-4ef7-4d39-94f2-295cb115e359",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.013.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.010.mtl": {
+      "ver": "1.0.5",
+      "uuid": "bca3c26d-37ea-484e-8b6f-392d6984a43c",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.010.mtl",
+      "subMetas": {}
+    },
+    "Default_Material.mtl": {
+      "ver": "1.0.5",
+      "uuid": "6ca44dda-01ce-455d-afc8-da0999d7a5ad",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "Default_Material.mtl",
+      "subMetas": {}
+    },
+    "texture_main.014.mtl": {
+      "ver": "1.0.5",
+      "uuid": "c8d55417-8563-403a-9335-f58b046a23db",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.014.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.011.mtl": {
+      "ver": "1.0.5",
+      "uuid": "248c5893-5ca2-4afb-8833-d15fe3e94caf",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.011.mtl",
+      "subMetas": {}
+    },
+    "texture_main.015.mtl": {
+      "ver": "1.0.5",
+      "uuid": "40fd9b65-944a-4b3a-9f99-0198fab485ee",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.015.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.012.mtl": {
+      "ver": "1.0.5",
+      "uuid": "3d134fc7-6782-4feb-a1d8-849c23171f2d",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.012.mtl",
+      "subMetas": {}
+    },
+    "texture_main.016.mtl": {
+      "ver": "1.0.5",
+      "uuid": "2ba41db6-a23a-43b4-9a92-5785e2c937e4",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.016.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.013.mtl": {
+      "ver": "1.0.5",
+      "uuid": "054b6921-200a-484f-a699-faf875d3a8b6",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.013.mtl",
+      "subMetas": {}
+    },
+    "texture_main.017.mtl": {
+      "ver": "1.0.5",
+      "uuid": "8b378a54-ecc9-4c3e-b455-b55ab475aba1",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.017.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.014.mtl": {
+      "ver": "1.0.5",
+      "uuid": "7437b01f-50ee-4fb1-8802-420bb7aa84c0",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.014.mtl",
+      "subMetas": {}
+    },
+    "texture_main.018.mtl": {
+      "ver": "1.0.5",
+      "uuid": "07f89cfd-f685-4a09-a5c7-bffb57de4056",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.018.mtl",
+      "subMetas": {}
+    },
+    "linh_tron.015.mtl": {
+      "ver": "1.0.5",
+      "uuid": "4b10efcc-8604-45d5-bc1d-fca10214a51a",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "linh_tron.015.mtl",
+      "subMetas": {}
+    },
+    "texture_main.019.mtl": {
+      "ver": "1.0.5",
+      "uuid": "5ef06c56-159f-45ac-98ef-9a0f8de49ee3",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "texture_main.019.mtl",
+      "subMetas": {}
+    },
+    "LP_Atlas_Color_Palette_V8_00.mtl": {
+      "ver": "1.0.5",
+      "uuid": "1944e4bb-d4f1-416c-a564-ad91fe14b3b7",
+      "importer": "material",
+      "dataAsSubAsset": null,
+      "name": "LP_Atlas_Color_Palette_V8_00.mtl",
+      "subMetas": {}
+    }
+  }
+}
