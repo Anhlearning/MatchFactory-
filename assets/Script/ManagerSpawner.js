@@ -86,7 +86,6 @@ const ManagerSpawner=cc.Class({
     
                     // Set position 3D
                     newNode.setPosition(posX, 0, posZ);
-                    console.log(posX +  " XXXXXXXXXXXXXX " + posZ)
                     // Bỏ hết hiệu ứng: opacity, scale, tween
                     this.node.addChild(newNode);
                 }
@@ -95,25 +94,26 @@ const ManagerSpawner=cc.Class({
     },
     
     SpawnObjectSingle(posX) {
-        // Kiểm tra listSpawner có phần tử nào không
         if (this.listSpawner.length === 0) {
             cc.error("listSpawner is empty!");
             return;
         }
     
         let randomIndex = Math.floor(Math.random() * this.listSpawner.length);
-    
-        // Lấy prefab từ danh sách
         let prefab = this.listSpawner[randomIndex];
     
-
         let newNode = cc.instantiate(prefab);
-
-        newNode.setPosition(cc.v2(posX, this.mindistanceZ));
+    
+        // Tạo vị trí theo thế giới (world space)
+        let worldPos = cc.v3(posX, 0, this.mindistanceZ);
     
         // Thêm vào scene
         this.node.addChild(newNode);
+    
+        // Đặt vị trí theo không gian thế giới
+        newNode.setWorldPosition(worldPos);
     },
+    
     
     
 });

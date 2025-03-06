@@ -90,73 +90,120 @@ const ManagerClick=cc.Class({
         this.SortPosInStack();
     },
     setParentKeepWorldPositionAndScale(node, newParent) {
-        let worldPos = node.convertToWorldSpaceAR(cc.v2(0, 0));
-        let currentScale = node.scale; // Lưu scale hiện tại
-    
+        let worldPos = node.convertToWorldSpaceAR(cc.v3(0, 0, 0));
+
+        let worldScale = cc.v3();
+        node.getScale(worldScale);
+
         node.setParent(newParent);
     
         let localPos = newParent.convertToNodeSpaceAR(worldPos);
-        node.position = localPos;
+        node.setPosition(localPos);
     
-        let parentScale = newParent.scale; 
-        node.scale = currentScale / parentScale; // Cân chỉnh lại scale để không bị ảnh hưởng bởi scale của newParent
-    },    
+        let parentWorldScale = this.getWorldScale(newParent);
+        let adjustedScale = cc.v3(
+            worldScale.x / parentWorldScale.x,
+            worldScale.y / parentWorldScale.y,
+            worldScale.z / parentWorldScale.z
+        );
+        node.setScale(adjustedScale);
+    
+       
+        let rotation = cc.quat();
+        cc.Quat.fromEuler(rotation, 90, 0, 0);
+        node.setRotation(rotation);
+    
+        // Check lại scale lần cuối sau xoay (nếu cần)
+        let finalScale = cc.v3();
+        node.getScale(finalScale);
+    },
+    
+    
+    
+    getWorldScale(node) {
+        let scale = cc.v3(1, 1, 1);
+        for(let i=0 ; i< 2 ;i ++){
+            let nodeScale = cc.v3();
+            node.getScale(nodeScale);
+    
+            scale.x *= nodeScale.x;
+            scale.y *= nodeScale.y;
+            scale.z *= nodeScale.z;
+    
+            node = node.parent;
+        }
+        return scale;
+    },
+    
+    
+    
 
-    HandleObjectInContainer(node){
-        if(this.objectsCurrentContainer.length>=3) return;
-        let targetNode= this.containers[0].children[this.objectsCurrentContainer.length];
-
+    HandleObjectInContainer(node) {
+        if (this.objectsCurrentContainer.length >= 3) return;
+    
+        let targetNode = this.containers[0].children[this.objectsCurrentContainer.length];
         this.objectsCurrentContainer.push(node);
-        
-        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 20));
+    
+        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v3(0.05, -0.05, 0));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
-
+    
         this.HandleMoveDownTile(node.position);
+    
         cc.tween(node)
-        .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
-        .call(()=>{
+            .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
+            .call(() => {
                 this.setParentKeepWorldPositionAndScale(node, this.containers[0]);
-
                 this.countContainer++;
                 if (this.countContainer === 3) {
-                    this.psNode.active=true;
-                    this.ps.resetSystem();   // Phát particle
-
-                    this.ps.finished = () => {  
-                        console.log("FINISHED");
-                        this.psNode.active = false;
-                    };
-                    let initialScale = 0.3 * (1/0.6);
-                    this.objectsCurrentContainer.forEach((node,index) => {
-                        let heightframe = cc.winSize.height;
-                        let widthframe = cc.winSize.width;
-                        let outOfScreenPos = cc.v2(-widthframe, node.y); 
-                        if (heightframe < widthframe) {
-                            outOfScreenPos = cc.v2(node.x, heightframe); 
-                        }
-                        cc.tween(node)
-                            .to(0.25, { scale: 0.1* (1/0.6)  }, { easing: 'quadIn' }) // Thu nhỏ nhanh
-                            .by(0.4, { position: cc.v2(0, 60), scale: 0.30* (1/0.6) }, { easing: 'backOut' }) // Nảy mạnh lên, scale vượt mức ban đầu
-                            .by(0.35, { position: cc.v2(0, -60), scale: -0.15 * (1/0.6) }, { easing: 'sineIn' }) // Nhún xuống, scale về nhẹ hơn
-                            .by(0.1, { position: cc.v2(-5, 0) })
-                            .by(0.1, { position: cc.v2(10, 0) })
-                            .by(0.1, { position: cc.v2(-5, 0) })
-                            .to(0.15, { scale: initialScale }, { easing: 'sineOut' }) 
-                            .call(()=>{
-                                if (index === this.objectsCurrentContainer.length - 1) {
-                                    this.countContainer = 0;
-                                    let copiedList = [...this.objectsCurrentContainer];
-                                    this.objectsCurrentContainer = [];
-                                    this.HandleNextContainer(copiedList);
-                                }
-                            })
-                            .start();
-                    });                    
-
+                        this.psNode.active = true;
+                        this.ps.resetSystem();
+                        this.objectsCurrentContainer.forEach((node, index) => {
+                            let currentScale = node.scale;
+                            const smallScale = currentScale * (1500 / 2100);
+                            const shrinkScale = currentScale * (1000 / 2100);
+                            let initialPos = node.position;
+                            cc.tween(node)
+                                .to(0.25, { 
+                                    scale: smallScale, 
+                                    position: initialPos
+                                }, { easing: 'quadIn' })
+            
+                                .to(0.4, { 
+                                    scale: currentScale, 
+                                    position: initialPos.add(cc.v3(0, 0, 600))
+                                }, { easing: 'backOut' })
+            
+                                .to(0.35, { 
+                                    scale: shrinkScale,
+                                    position: initialPos
+                                }, { easing: 'sineIn' })
+            
+                                .by(0.1, { position: cc.v3(-5, 0, 0) })
+                                .by(0.1, { position: cc.v3(10, 0, 0) })
+                                .by(0.1, { position: cc.v3(-5, 0, 0) })
+            
+                                .to(0.15, { 
+                                    scale: currentScale,
+                                    position: initialPos
+                                }, { easing: 'sineOut' })
+            
+                                .call(() => {
+                                    console.warn(index);
+                                    if (index === this.objectsCurrentContainer.length - 1) {
+                                        this.countContainer = 0;
+                                        let copiedList = [...this.objectsCurrentContainer];
+                                        this.HandleNextContainer(copiedList);
+                                        this.objectsCurrentContainer = [];
+                                    }
+                                })
+                                .start();
+                        });
+                    
                 }
             })
             .start();
     },
+    
 
     HandleNextContainer(destroyList){
         let firstContainer = this.containers[0]; 
@@ -174,32 +221,43 @@ const ManagerClick=cc.Class({
         let widthframe = cc.winSize.width;
         let outOfScreenPos = cc.v2(-widthframe, firstContainer.y); 
         if (heightframe < widthframe) {
-            // Nếu màn hình dọc -> di chuyển lên trên
             outOfScreenPos = cc.v2(firstContainer.x, heightframe); 
         }
+       // Tween di chuyển firstContainer ra ngoài màn hình (3D)
         cc.tween(firstContainer)
-        .to(0.5, { position: outOfScreenPos }, { easing: "sineInOut" })
+        .to(0.5, { position: cc.v3(outOfScreenPos.x, outOfScreenPos.y, outOfScreenPos.z) }, { easing: "sineInOut" })
         .call(() => {
-            destroyList.forEach((node,index) => {
+            destroyList.forEach((node, index) => {
                 node.destroy();
             });
+
             firstContainer.opacity = 0; 
+
+            // Shift container
             this.containers.shift();
-            firstContainer.position = cc.v2(lastContainerPos.x, lastContainerPos.y);
-            firstContainer.opacity = 255; 
+
+            // Đặt lại vị trí cho firstContainer ở cuối hàng trong không gian 3D
+            firstContainer.setPosition(lastContainerPos.x, lastContainerPos.y, lastContainerPos.z);
+            firstContainer.opacity = 255;
+
             this.containers.push(firstContainer);
         })
         .start();
+
+        // Tween di chuyển secondContainer tới vị trí đầu tiên (3D)
         cc.tween(secondContainer)
-            .to(0.5, { position: firstContainerPos }, { easing: "sineInOut" })
-            .call(()=>{
-                this.currentContainer=this.containers[0];
-                this.AutoPushStackInContainer();
-            })
-            .start();
-        cc.tween(thirdContainer)
-        .to(0.5, { position: secondContainerPos}, { easing: "sineInOut" })
+        .to(0.5, { position: cc.v3(firstContainerPos.x, firstContainerPos.y, firstContainerPos.z) }, { easing: "sineInOut" })
+        .call(() => {
+            this.currentContainer = this.containers[0];
+            this.AutoPushStackInContainer();
+        })
         .start();
+
+        // Tween di chuyển thirdContainer tới vị trí thứ hai (3D)
+        cc.tween(thirdContainer)
+        .to(0.5, { position: cc.v3(secondContainerPos.x, secondContainerPos.y, secondContainerPos.z) }, { easing: "sineInOut" })
+        .start();
+
     },
 
     AutoPushStackInContainer(){
@@ -264,38 +322,59 @@ const ManagerClick=cc.Class({
         .start();
     },
     SortPosInStack(){
-        for(let i=0;i<this.objectsCurrentStack.length;i++){
-            let targetNode= this.stack.children[i];  
-            let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 20));
-            let targetPos = this.objectsCurrentStack[i].parent.convertToNodeSpaceAR(containerWorldPos);
+        for (let i = 0; i < this.objectsCurrentStack.length; i++) {
+            let targetNode = this.stack.children[i];
+        
+            // Lấy vị trí world 3D của targetNode (cần Vec3)
+            let containerWorldPos = targetNode.worldPosition;  // 3D
+        
+            // Convert sang vị trí local 3D trong parent của object hiện tại
+            let targetPos = this.objectsCurrentStack[i].parent.inverseTransformPoint(containerWorldPos);
+        
             cc.tween(this.objectsCurrentStack[i])
-            .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
-            .start();
-        }
+                .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
+                .start();
+        }        
     },
     
     HandleMoveDownTile(deletedNodes) {
         const nodesToMove = this.ManagerSpawner.children
-            .filter(otherNode => otherNode.position.x === deletedNodes.x && otherNode.position.y > deletedNodes.y)
-            .sort((a, b) => a.position.y - b.position.y); // Sắp xếp từ dưới lên
-        nodesToMove.forEach((node, index) => {
-            let newY = node.position.y - 150;
-            let originScaleX = 0.3;
-            let originScaleY = 0.3;
-            cc.tween(node)
-                .to(0.3, { position: cc.v2(node.position.x, newY) }, { easing: 'sineInOut' })
-                .call(() => {
-                    if(index === nodesToMove.length - 1){
-                        ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
-                    }
-                    cc.tween(node)
-                        .to(0.2, { scaleY: originScaleY * 0.85, scaleX: originScaleX * 1.15 })
-                        .to(0.2, { scaleY: originScaleY * 1.05, scaleX: originScaleX * 0.95 })
-                        .to(0.15, { scaleY: originScaleY, scaleX: originScaleX })
-                        .start();
-                })
-                .start();
-        });
+        .filter(otherNode => 
+            otherNode.position.x === deletedNodes.x &&
+            otherNode.position.z < deletedNodes.z
+        )
+        .sort((a, b) => b.position.z - a.position.z); 
+    
+    nodesToMove.forEach((node, index) => {
+        let newZ = node.position.z + 150; 
+    
+        let originScaleX = node.scale.x;
+        let originScaleY = node.scale.y;
+        let originScaleZ = node.scale.z;
+    
+        cc.tween(node)
+            .delay(0.25*index)
+            .to(0.3, { position: cc.v3(node.position.x, node.position.y, newZ) }, { easing: 'sineInOut' })
+            .call(() => {
+                if (index === nodesToMove.length - 1) {
+                    ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
+                }
+    
+                // cc.tween(node)
+                //     .to(0.2, { 
+                //         scale: cc.v3(originScaleX * 1.15, originScaleY * 0.85, originScaleZ)
+                //     })
+                //     .to(0.2, { 
+                //         scale: cc.v3(originScaleX * 0.95, originScaleY * 1.05, originScaleZ)
+                //     })
+                //     .to(0.15, { 
+                //         scale: cc.v3(originScaleX, originScaleY, originScaleZ)
+                //     })
+                //     .start();
+            })
+            .start();
+    });
+    
     }
     
     

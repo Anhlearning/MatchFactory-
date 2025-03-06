@@ -14,7 +14,24 @@ cc.Class({
             this.addBoundingBox(obj);
         }
     },
-
+    startClick(event) {
+        
+        let touchLoc = event.touch.getLocation();
+        let ray = cc.Camera.main.getRay(touchLoc);
+        let results = cc.geomUtils.intersect.raycast(cc.director.getScene(), ray);
+        for (let i = 0; i < results.length; i++) {
+            var obj = results[i].node;
+            if (obj.group === "Car") {
+                obj.getComponent("Car").checkMove();
+                this.clock.timecheckEndcard = 0;
+                return;
+            }
+            if (obj.group === "People") {
+                this.openLinkApp();
+                return;
+            }
+        }
+    },
     onTouchStart(event) {
         const touchPos = event.getLocation();
         const ray = this.screenPointToRay(touchPos);

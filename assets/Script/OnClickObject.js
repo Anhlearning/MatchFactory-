@@ -32,7 +32,7 @@ cc.Class({
 
     HandleClickObject() {
         if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) return ;
-        //ManagerClick.instance.AddObjectInContainer(this.node);
+        ManagerClick.instance.AddObjectInContainer(this.node);
     },
     pieceBouyingAnimating(piece) {
         let originScaleY = this.originScaleY;   
@@ -51,10 +51,9 @@ cc.Class({
         let maxZ = this.node.position.z;
         parent.children.forEach(child => {
             if (child !== this.node &&
-                child.position.z > maxZ /*&& 
-                // !ManagerClick.instance.objectsCurrentContainer.includes(child) && 
-                // !ManagerClick.instance.objectsCurrentStack.includes(child))*/
-            )
+                child.position.z > maxZ && 
+                 !ManagerClick.instance.objectsCurrentContainer.includes(child) && 
+                 !ManagerClick.instance.objectsCurrentStack.includes(child))
             {
                 maxZ = child.position.z;
             }
