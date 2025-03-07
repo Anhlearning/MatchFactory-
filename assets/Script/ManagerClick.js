@@ -34,15 +34,20 @@ const ManagerClick=cc.Class({
         this.ps=this.psNode.getComponent(cc.ParticleSystem);
         this.isEnd=false;
         this.errorScr=this.errorNode.getComponent('Error');
+        this.blockX=-5000;
     },
 
     start () {
     },
     
-    AddObjectInContainer(node){
-        if(this.isEnd||this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || !this.currentContainer ){
+    HandleObjectClicked(node){
+        if(this.isEnd||this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || node.position.x == this.blockX){
             console.log("Đã vào trong hàng đợi hoặc container");
             return ;
+        }
+        if(!this.currentContainer){
+            this.PushObjectInStack(node);
+            return;
         }
         let isNameExist = false;
         let nameContainer=this.currentContainer.name.split(" ")[1];
@@ -148,57 +153,72 @@ const ManagerClick=cc.Class({
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
     
         this.HandleMoveDownTile(node.position);
-    
-        cc.tween(node)
-            .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
+        this.jumpWithEffect(node,targetPos,150,0.6,this);
+    },
+    jumpWithEffect(node, targetPos, jumpHeight, jumpTime, context) {
+        const currentPos = node.position;
+
+        const midPos = cc.v3(
+            (targetPos.x ) ,
+            Math.max(currentPos.y, targetPos.y) + jumpHeight,
+            (targetPos.z )
+        );
+
+        const upTime = jumpTime;
+        const downTime = jumpTime * 0.25;
+
+    cc.tween(node)
+        .to(upTime, { position: midPos }, { easing: 'sineOut' })
+        .to(downTime, { position: targetPos }, { easing: 'sineIn' })
             .call(() => {
-                this.setParentKeepWorldPositionAndScale(node, this.containers[0]);
-                this.countContainer++;
-                if (this.countContainer === 3) {
-                        this.psNode.active = true;
-                        this.ps.resetSystem();
-                        this.objectsCurrentContainer.forEach((node, index) => {
-                            let currentScale = node.scale;
-                            const smallScale = currentScale * (1500 / 2100);
-                            const shrinkScale = currentScale * (1000 / 2100);
-                            let initialPos = node.position;
-                            cc.tween(node)
-                                .to(0.25, { 
-                                    scale: smallScale, 
-                                    position: initialPos
-                                }, { easing: 'quadIn' })
-            
-                                .to(0.4, { 
-                                    scale: currentScale, 
-                                    position: initialPos.add(cc.v3(0, 0, 600))
-                                }, { easing: 'backOut' })
-            
-                                .to(0.35, { 
-                                    scale: shrinkScale,
-                                    position: initialPos
-                                }, { easing: 'sineIn' })
-            
-                                .by(0.1, { position: cc.v3(-5, 0, 0) })
-                                .by(0.1, { position: cc.v3(10, 0, 0) })
-                                .by(0.1, { position: cc.v3(-5, 0, 0) })
-            
-                                .to(0.15, { 
-                                    scale: currentScale,
-                                    position: initialPos
-                                }, { easing: 'sineOut' })
-            
-                                .call(() => {
-                                    console.warn(index);
-                                    if (index === this.objectsCurrentContainer.length - 1) {
-                                        this.countContainer = 0;
-                                        let copiedList = [...this.objectsCurrentContainer];
-                                        this.HandleNextContainer(copiedList);
-                                        this.objectsCurrentContainer = [];
-                                    }
-                                })
-                                .start();
-                        });
-                    
+                context.setParentKeepWorldPositionAndScale(node, context.containers[0]);
+                context.countContainer++;
+    
+                if (context.countContainer === 3) {
+                    context.psNode.active = true;
+                    context.ps.resetSystem();
+    
+                    context.objectsCurrentContainer.forEach((node, index) => {
+                        let currentScale = node.scale;
+                        const smallScale = currentScale*(1500 / 2100);
+                        const shrinkScale = currentScale*(1000 / 2100);
+                        let initialPos = node.position;
+    
+                        cc.tween(node)
+                            .to(0.25, {
+                                scale: smallScale,
+                                position: initialPos
+                            }, { easing: 'quadIn' })
+    
+                            .to(0.4, {
+                                scale: currentScale,
+                                position: initialPos.add(cc.v3(0, 0, 600))
+                            }, { easing: 'backOut' })
+    
+                            .to(0.35, {
+                                scale: shrinkScale,
+                                position: initialPos
+                            }, { easing: 'sineIn' })
+    
+                            .by(0.1, { position: cc.v3(-5, 0, 0) })
+                            .by(0.1, { position: cc.v3(10, 0, 0) })
+                            .by(0.1, { position: cc.v3(-5, 0, 0) })
+    
+                            .to(0.15, {
+                                scale: currentScale,
+                                position: initialPos
+                            }, { easing: 'sineOut' })
+    
+                            .call(() => {
+                                if (index === context.objectsCurrentContainer.length - 1) {
+                                    context.countContainer = 0;
+                                    let copiedList = [...context.objectsCurrentContainer];
+                                    context.HandleNextContainer(copiedList);
+                                    context.objectsCurrentContainer = [];
+                                }
+                            })
+                            .start();
+                    });
                 }
             })
             .start();
@@ -315,21 +335,21 @@ const ManagerClick=cc.Class({
         let targetNode= this.stack.children[this.objectsCurrentStack.length];
         this.objectsCurrentStack.push(node);
         this.HandleMoveDownTile(node.position);
-        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 20));
+        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v3(0, 0,0));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
         cc.tween(node)
         .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
         .start();
     },
+
+
     SortPosInStack(){
         for (let i = 0; i < this.objectsCurrentStack.length; i++) {
             let targetNode = this.stack.children[i];
         
-            // Lấy vị trí world 3D của targetNode (cần Vec3)
-            let containerWorldPos = targetNode.worldPosition;  // 3D
+            let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v3(0, 0,0));
         
-            // Convert sang vị trí local 3D trong parent của object hiện tại
-            let targetPos = this.objectsCurrentStack[i].parent.inverseTransformPoint(containerWorldPos);
+            let targetPos = this.objectsCurrentStack[i].parent.convertToNodeSpaceAR(containerWorldPos);
         
             cc.tween(this.objectsCurrentStack[i])
                 .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
@@ -344,33 +364,37 @@ const ManagerClick=cc.Class({
             otherNode.position.z < deletedNodes.z
         )
         .sort((a, b) => b.position.z - a.position.z); 
-    
-    nodesToMove.forEach((node, index) => {
+        this.blockX = deletedNodes.x;
+        nodesToMove.forEach((node, index) => {
         let newZ = node.position.z + 150; 
-    
-        let originScaleX = node.scale.x;
-        let originScaleY = node.scale.y;
-        let originScaleZ = node.scale.z;
-    
+        let originScaleX = node.scaleX;
+        let originScaleY = node.scaleY;
+        let originScaleZ = node.scaleZ;
         cc.tween(node)
-            .delay(0.25*index)
+            .delay(0.05*index)
             .to(0.3, { position: cc.v3(node.position.x, node.position.y, newZ) }, { easing: 'sineInOut' })
             .call(() => {
                 if (index === nodesToMove.length - 1) {
                     ManagerSpawner.instance.SpawnObjectSingle(deletedNodes.x);
+                    this.blockX=-5000;
                 }
-    
-                // cc.tween(node)
-                //     .to(0.2, { 
-                //         scale: cc.v3(originScaleX * 1.15, originScaleY * 0.85, originScaleZ)
-                //     })
-                //     .to(0.2, { 
-                //         scale: cc.v3(originScaleX * 0.95, originScaleY * 1.05, originScaleZ)
-                //     })
-                //     .to(0.15, { 
-                //         scale: cc.v3(originScaleX, originScaleY, originScaleZ)
-                //     })
-                //     .start();
+                cc.tween(node)
+                .to(0.2, { 
+                    scaleX: originScaleX * 1.2,
+                    scaleY: originScaleY * 0.8,
+                    scaleZ: originScaleZ
+                })
+                .to(0.2, { 
+                    scaleX: originScaleX * 0.9,
+                    scaleY: originScaleY * 1.15,
+                    scaleZ: originScaleZ
+                })
+                .to(0.15, { 
+                    scaleX: 150,
+                    scaleY: 150,
+                    scaleZ: 150
+                })
+                .start();
             })
             .start();
     });

@@ -17,6 +17,7 @@ cc.Class({
         tutorials:cc.Node,
         itemlist:cc.Node,
         listBG:[cc.Node],
+        camera3D: cc.Node,
     },
 
     onLoad(){
@@ -58,14 +59,20 @@ cc.Class({
         else if (widthframe > heightframe) {
             console.log("màn Ngang");
             targetScale = widthframe / this.originWidth/2;
-            this.AdjustScaleAllObject(targetScale);
-            this.managerSpawn.setPosition(cc.v2(-widthframe / 4, 0));
-            this.stack.setPosition(cc.v2( -widthframe / 4, -600 * (widthframe/3408)));
-            this.moveNodeToRightEdge();
-            this.syncItemlistPosition();   
+            // this.AdjustScaleAllObject(targetScale);
+            this.managerSpawn.setPosition(cc.v2(-widthframe / 10, 0));
+            // this.stack.setPosition(cc.v2( -widthframe / 4, -600 * (widthframe/3408)));
+            // this.moveNodeToRightEdge();
+            // this.syncItemlistPosition();   
+            // this.camera3D.setPosition(cc.v3(-50,870,-120));
+            // let rotation = cc.Quat.fromEuler(new cc.Quat(), -80, 0, 0);
+            // this.camera3D.setRotation(rotation);
         }
         else {
             console.log("màn hình dọc") 
+             this.camera3D.setPosition(cc.v3(0,900,250));
+            let rotation = cc.Quat.fromEuler(new cc.Quat(), -68, 0, 0);
+            this.camera3D.setRotation(rotation);
             targetScale = 1* (widthframe/1080);
             this.AdjustScaleAllObject(targetScale);
             this.SetOriginPosAllOb();

@@ -112,6 +112,7 @@ const ManagerSpawner=cc.Class({
     
         // Đặt vị trí theo không gian thế giới
         newNode.setWorldPosition(worldPos);
+        newNode.setSiblingIndex(0);
     },
     
     

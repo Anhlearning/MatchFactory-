@@ -32,16 +32,7 @@ cc.Class({
 
     HandleClickObject() {
         if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) return ;
-        ManagerClick.instance.AddObjectInContainer(this.node);
-    },
-    pieceBouyingAnimating(piece) {
-        let originScaleY = this.originScaleY;   
-        let originScaleX = this.originScaleX;
-        cc.tween(piece)
-        .to(0.2, { scaleX: originScaleX + 0.15, scaleY: originScaleY - 0.15 })
-        .to(0.2, { scaleY: originScaleY + 0.15, scaleX: originScaleX - 0.15 })
-        .to(0.15, { scaleY: originScaleY, scaleX: originScaleX })
-        .start();
+        ManagerClick.instance.HandleObjectClicked(this.node);
     },
     CheckIsObjectMinZ() {
         let parent = this.node.parent;
