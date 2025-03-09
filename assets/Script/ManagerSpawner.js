@@ -67,7 +67,6 @@ const ManagerSpawner=cc.Class({
     
         let startX = -((totalCols - 1) * spacingX / 2);
         let startZ = -(heightframe / 2 + 300);
-        console.log(startZ);
         for (let row = 0; row < this.nodeStringList.length; row++) {
             let str = this.nodeStringList[row];
             let numbers = str.match(/\d+/g);
@@ -107,11 +106,10 @@ const ManagerSpawner=cc.Class({
         // Tạo vị trí theo thế giới (world space)
         let worldPos = cc.v3(posX, 0, this.mindistanceZ);
     
-        // Thêm vào scene
         this.node.addChild(newNode);
-    
         // Đặt vị trí theo không gian thế giới
-        newNode.setWorldPosition(worldPos);
+        newNode.position=worldPos;
+        console.log(this.node.position);
         newNode.setSiblingIndex(0);
     },
     

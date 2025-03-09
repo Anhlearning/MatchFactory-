@@ -42,7 +42,6 @@ const ManagerClick=cc.Class({
     
     HandleObjectClicked(node){
         if(this.isEnd||this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || node.position.x == this.blockX){
-            console.log("Đã vào trong hàng đợi hoặc container");
             return ;
         }
         if(!this.currentContainer){
@@ -282,7 +281,6 @@ const ManagerClick=cc.Class({
 
     AutoPushStackInContainer(){
         if(this.objectsCurrentStack.length <=0 || !this.currentContainer) {
-            console.log("STACK RONG HOAC KHONG CO CONTAINER");
             return;
         }
         let nameContainer=this.currentContainer.name.split(" ")[1];
@@ -290,7 +288,6 @@ const ManagerClick=cc.Class({
         ok=false;
         for(let i=0;i < this.objectsCurrentStack.length;i++){
             if(this.objectsCurrentStack[i].name === nameContainer){
-                console.warn("PUSHING INTO OBJECT");
                 ObjectHandList.push(this.objectsCurrentStack[i]);
             }
             if(ObjectHandList.length >= 3) {
@@ -326,12 +323,10 @@ const ManagerClick=cc.Class({
     },
     PushObjectInStack(node){
         if(this.objectsCurrentStack.length >= 5) {
-            console.log("THUA ROI HEHE !! ")
             this.isEnd=true;
             this.errorScr.showErrorEffect();
             return;
         }
-        console.error(this.objectsCurrentStack.length);
         let targetNode= this.stack.children[this.objectsCurrentStack.length];
         this.objectsCurrentStack.push(node);
         this.HandleMoveDownTile(node.position);
