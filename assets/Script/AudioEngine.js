@@ -43,22 +43,29 @@ const AudioEngine = cc.Class({
             }
         }
     },
-
-    playBirdTweet() {
+    playClick() {
         if (CONFIG.isPlaySound) {
-            let randomIndex = Math.floor(Math.random() * 9) + 1;
-            this.currentAudio[1] = cc.audioEngine.play(this.audio[randomIndex], false, 0.8);
+            this.currentAudio[1] = cc.audioEngine.play(this.audio[2], false, 0.8);
         }
     },
-    playBirdFly(){
+    playMatch(){
         if (CONFIG.isPlaySound) {
-            let randomIndex = Math.floor(Math.random() * 2) + 10;
-            this.currentAudio[2] = cc.audioEngine.play(this.audio[randomIndex], false, 0.8);
+            this.currentAudio[2] = cc.audioEngine.play(this.audio[5], false, 0.8);
         }
     },
-    playNotifyEndGame(){
+    playLose(){
         if (CONFIG.isPlaySound) {
-            this.currentAudio[3] = cc.audioEngine.play(this.audio[12], false, 0.8);
+            this.currentAudio[3] = cc.audioEngine.play(this.audio[3], false, 0.8);
+        }
+    },
+    playError(){
+        if (CONFIG.isPlaySound) {
+            this.currentAudio[3] = cc.audioEngine.play(this.audio[4], false, 0.8);
+        }
+    },
+    playWinLevel(){
+        if (CONFIG.isPlaySound) {
+            this.currentAudio[3] = cc.audioEngine.play(this.audio[1], false, 0.8);
         }
     },
     playLeaveBusStop() {

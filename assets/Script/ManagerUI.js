@@ -15,7 +15,6 @@ cc.Class({
         container: cc.Node,
         managerSpawn:cc.Node,
         tutorials:cc.Node,
-        itemlist:cc.Node,
         listBG:[cc.Node],
         camera3D: cc.Node,
     },
@@ -26,14 +25,13 @@ cc.Class({
             container: this.container.getPosition(),
             managerSpawn: this.managerSpawn.getPosition(),
             tutorials: this.tutorials.getPosition(),
-            itemlist:this.itemlist.getPosition()
         };
         this.originScales = {
             stack: cc.v3(this.stack.scale,this.stack.scale,this.stack.scale),
             container: cc.v3(this.container.scale,this.container.scale,this.container.scale),
             managerSpawn: cc.v3(this.managerSpawn.scale,this.managerSpawn.scale,this.managerSpawn.scale),
             tutorials: cc.v3(this.tutorials.scale,this.tutorials.scale,this.tutorials.scale),
-            itemlist: cc.v3(this.itemlist.scale,this.itemlist.scale,this.itemlist.scale)
+
         };
         
         console.log('Origin Scales:', this.originScales);
@@ -57,26 +55,36 @@ cc.Class({
         let targetScale = 1;
 
         console.log(widthframe + " : "+ heightframe);
-        if(heightframe >= 1.3 * widthframe  && heightframe < 1.7 *widthframe){
+        if(heightframe > widthframe * 2){
+            this.camera3D.setPosition(cc.v3(0,870,400));
+            let rotation = cc.Quat.fromEuler(new cc.Quat(), -65, 0, 0);
+            this.camera3D.setRotation(rotation);
+            this.camera3D.getComponent(cc.Camera).fov = 65;
+            targetScale = widthframe/1080;
+            this.AdjustScaleAllObject(targetScale);
+            this.SetOriginPosAllOb();
+        }
+        else if(heightframe >= 1.3 * widthframe  && heightframe < 1.7 *widthframe){
             console.log("Màn ipad");
             targetScale = 1;
             this.AdjustScaleAllObject(targetScale);
             this.SetOriginPosAllOb();
-           
         }
-
         else if (widthframe > heightframe) {
             targetScale = widthframe / 1920 / 2;
             this.AdjustScaleAllObject(targetScale);
             this.managerSpawn.setPosition(cc.v3(-widthframe / 10, 0,10));
             this.stack.setPosition(cc.v3(-widthframe/10-4,0,120));
+            this.camera3D.setPosition(cc.v3(0,900,250));
+            let rotation = cc.Quat.fromEuler(new cc.Quat(), -68, 0, 0);
+            this.camera3D.setRotation(rotation);
             this.camera3D.getComponent(cc.Camera).fov = 50;
             this.moveNodeToRightEdge();  
         }
-        else {
+        else if (widthframe < heightframe){
             console.log("màn hình dọc") 
-            this.camera3D.setPosition(cc.v3(0,900,250));
-            let rotation = cc.Quat.fromEuler(new cc.Quat(), -68, 0, 0);
+            this.camera3D.setPosition(cc.v3(0,857,403));
+            let rotation = cc.Quat.fromEuler(new cc.Quat(), -60, 0, 0);
             this.camera3D.setRotation(rotation);
             this.camera3D.getComponent(cc.Camera).fov = 65;
             targetScale = widthframe/1080;
@@ -110,7 +118,6 @@ cc.Class({
         this.container.setPosition(this.originPositions.container);
         this.managerSpawn.setPosition(this.originPositions.managerSpawn);
         this.tutorials.setPosition(this.originPositions.tutorials);
-        this.itemlist.setPosition(this.originPositions.itemlist);   
     },
     AdjustScaleAllObject(targetScale) {
         this.stack.scale = cc.v3(
@@ -136,12 +143,7 @@ cc.Class({
             this.originScales.tutorials.y * targetScale,
             this.originScales.tutorials.z * targetScale
         );
-    
-        this.itemlist.scale = cc.v3(
-            this.originScales.itemlist.x * targetScale,
-            this.originScales.itemlist.y * targetScale,
-            this.originScales.itemlist.z * targetScale
-        );
+
     },
     
     moveNodeToRightEdge() {
@@ -155,20 +157,7 @@ cc.Class({
         let newX = widthframe / 10 ;
         let newY = heightframe / 20;
         this.container.setPosition(cc.v3(newX,-50,-newY));
-        this.tutorials.setPosition(cc.v3(newX, -50,-newY));
-    },
-    syncItemlistPosition() {
-        // Lấy world position của ManagerSpawn
-        let worldPos = this.managerSpawn.convertToWorldSpaceAR(cc.Vec2.ZERO);
-    
-        // Đổi từ world position về local position của tutorials (vì itemlist là con của tutorials)
-        let localPos = this.tutorials.convertToNodeSpaceAR(worldPos);
-    
-        // Xử lý scale hiện tại của tutorials (nếu tutorials có scale ≠ 1)
-        let scale = this.tutorials.scale;
-    
-        // Đặt vị trí itemlist về đúng vị trí local đã tính (loại bỏ ảnh hưởng scale)
-        this.itemlist.setPosition(cc.v2(localPos.x , localPos.y));
+        //this.tutorials.setPosition(cc.v3(newX, -50,-newY));
     },
     
     

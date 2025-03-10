@@ -6,7 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 const { error } = require('console');
 const ManagerSpawner= require('ManagerSpawner');
-
+const AudioEngine = require('./AudioEngine');
 
 const ManagerClick=cc.Class({
     extends: cc.Component,
@@ -19,6 +19,7 @@ const ManagerClick=cc.Class({
         ManagerSpawner:cc.Node,
         psNode:cc.Node,
         errorNode:cc.Node,
+        Hand:cc.Node,
     },
 
     statics: {
@@ -150,7 +151,6 @@ const ManagerClick=cc.Class({
     
         let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v3(0.05, -0.05, 0));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
-    
         this.HandleMoveDownTile(node.position);
         this.jumpWithEffect(node,targetPos,150,0.6,this);
     },
@@ -174,6 +174,7 @@ const ManagerClick=cc.Class({
                 context.countContainer++;
     
                 if (context.countContainer === 3) {
+                    AudioEngine.instance.playMatch();
                     context.psNode.active = true;
                     context.ps.resetSystem();
     
@@ -242,7 +243,6 @@ const ManagerClick=cc.Class({
         if (heightframe < widthframe) {
             outOfScreenPos = cc.v2(firstContainer.x, heightframe); 
         }
-       // Tween di chuyển firstContainer ra ngoài màn hình (3D)
         cc.tween(firstContainer)
         .to(0.5, { position: cc.v3(outOfScreenPos.x, outOfScreenPos.y, outOfScreenPos.z) }, { easing: "sineInOut" })
         .call(() => {
@@ -325,8 +325,10 @@ const ManagerClick=cc.Class({
         if(this.objectsCurrentStack.length >= 5) {
             this.isEnd=true;
             this.errorScr.showErrorEffect();
+            AudioEngine.instance.playLose();
             return;
         }
+        AudioEngine.instance.playError();
         let targetNode= this.stack.children[this.objectsCurrentStack.length];
         this.objectsCurrentStack.push(node);
         this.HandleMoveDownTile(node.position);

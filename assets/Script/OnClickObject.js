@@ -4,10 +4,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
-const ManagerClick = require('ManagerClick');
-const ManagerSpawner = require('./ManagerSpawner');
-const HandClick = require('HandClick');
+const AudioEngine = require('./AudioEngine');
+const ManagerClick = require('./ManagerClick');
 cc.Class({
     extends: cc.Component,
 
@@ -31,7 +29,10 @@ cc.Class({
     },
 
     HandleClickObject() {
-        if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) return ;
+        if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) {
+            return;
+        }
+        AudioEngine.instance.playClick();
         ManagerClick.instance.HandleObjectClicked(this.node);
     },
     CheckIsObjectMinZ() {
@@ -44,7 +45,7 @@ cc.Class({
             if (child !== this.node &&
                 child.position.z > maxZ && 
                  !ManagerClick.instance.objectsCurrentContainer.includes(child) && 
-                 !ManagerClick.instance.objectsCurrentStack.includes(child))
+                 !ManagerClick.instance.objectsCurrentStack.includes(child) &&  child !== ManagerClick.instance.Hand)
             {
                 maxZ = child.position.z;
             }

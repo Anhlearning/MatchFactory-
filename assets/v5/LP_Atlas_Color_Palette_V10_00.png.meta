@@ -10,7 +10,76 @@
   "packable": true,
   "width": 2048,
   "height": 2048,
-  "platformSettings": {},
+  "platformSettings": {
+    "default": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        },
+        {
+          "name": "astc_4x4",
+          "quality": "medium"
+        }
+      ]
+    },
+    "android": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    },
+    "ios": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    },
+    "web": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    }
+  },
   "subMetas": {
     "LP_Atlas_Color_Palette_V10_00": {
       "ver": "1.0.6",

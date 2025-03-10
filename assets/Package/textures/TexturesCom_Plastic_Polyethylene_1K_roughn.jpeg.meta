@@ -10,7 +10,24 @@
   "packable": true,
   "width": 1024,
   "height": 1024,
-  "platformSettings": {},
+  "platformSettings": {
+    "default": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    }
+  },
   "subMetas": {
     "TexturesCom_Plastic_Polyethylene_1K_roughn": {
       "ver": "1.0.6",

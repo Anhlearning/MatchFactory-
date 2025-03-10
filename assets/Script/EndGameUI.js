@@ -4,7 +4,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
+const Config = require('./Config');
+const AudioEngine = require('./AudioEngine');
 cc.Class({
     extends: cc.Component,
 
@@ -16,11 +17,13 @@ cc.Class({
     },
 
     showUIWithEffect(node) {
+        AudioEngine.instance.playWinLevel();
+        Config.onEndGame();
         node.scale = 0;  // Bắt đầu từ nhỏ
         node.angle = 0;  // Góc xoay ban đầu
     
         node.active = true;  // Đảm bảo UI hiện ra
-    
+        
         cc.tween(node)
             .parallel(
                 cc.tween().to(2, { scale: 1.1 }, { easing: 'backOut' }),  // Scale lớn dần với hiệu ứng nảy nhẹ
@@ -64,5 +67,7 @@ cc.Class({
         this.playScaleStrongEffect(this.goodIcon);
         this.playSoftScaleEffect(this.downloadBtn);
     },
-
+    ClickButtonEndGame(){
+        Config.openLinkApp();
+    }
 });

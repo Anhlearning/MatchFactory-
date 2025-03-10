@@ -10,7 +10,72 @@
   "packable": true,
   "width": 1024,
   "height": 1024,
-  "platformSettings": {},
+  "platformSettings": {
+    "default": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    },
+    "ios": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    },
+    "android": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    },
+    "web": {
+      "formats": [
+        {
+          "name": "png",
+          "quality": 80
+        },
+        {
+          "name": "jpg",
+          "quality": 80
+        },
+        {
+          "name": "webp",
+          "quality": 80
+        }
+      ]
+    }
+  },
   "subMetas": {
     "TexturesCom_Plastic_Polyethylene_1K_albedo": {
       "ver": "1.0.6",

@@ -5,17 +5,15 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+const { Console } = require("console");
 const HandClick = require("./HandClick");
-
+const ManagerSpawner = require("./ManagerSpawner");
 const Tutorials = cc.Class({
     extends: cc.Component,
 
     properties: {
-       listfruitsTu:{
-            default:[],
-            type:[cc.Node],
-       },
-       containerTut: cc.Node,
+      HandTut:cc.Node,
+      TextTut:cc.Node,
     },
 
     statics: {
@@ -27,87 +25,44 @@ const Tutorials = cc.Class({
         Tutorials.instance=this;
         this.heightframe = cc.winSize.height;
         this.widthframe = cc.winSize.width;
-        
         this.loopCurr=10;
         this.currentClickIndex = 0;  
+        this.HandClick=this.HandTut.getComponent('HandClick');
     },
 
     start () {
         setTimeout(() => {
             console.log("TUT HAND ACTIVE ");
-            //this.node.active=true;
-            this.SequenHandClick();
+            this.HandTut.setSiblingIndex(this.HandTut.parent.children.length - 1);
+            this.HandTut.active=true;
+            this.HandTut.opacity=255;
+            this.SequenHandClick(0);
         }, 200);
     },
 
-    setFruitPositionAll(){
-        this.setFruitPosition(this.listfruitsTu[0], 7, 0);
-        this.setFruitPosition(this.listfruitsTu[1], 7, 1);
-        this.setFruitPosition(this.listfruitsTu[2], 7, 3);
-    },
-
-    SequenHandClick() {
-        this.runHandClickSequence();
+    SequenHandClick(index) {
+        if (!ManagerSpawner.instance.ItemTutHand || ManagerSpawner.instance.ItemTutHand.length === 0) {
+            console.log("Không có ItemTutHand để hướng dẫn!");
+            return;
+        }
+    
+        if (index >= ManagerSpawner.instance.ItemTutHand.length) {
+            this.HideNode();
+            console.log("Hướng dẫn hoàn tất!");
+            return;
+        }
+        let targetNode = ManagerSpawner.instance.ItemTutHand[index];
+        this.HandClick.HandClickObject(targetNode,index);
     },
     
     HideNode(){
+        this.HandTut.active=false;
+        this.TextTut.active=false;
         this.node.active=false;
     },
 
     runHandClickSequence() {
-        if (this.currentClickIndex >= this.listfruitsTu.length) {
-            this.loopCurr--;
-            if(this.loopCurr<=0) {
-                this.node.active=false;
-            }
-            this.currentClickIndex = 0; 
-        }
-        let targetNode = this.listfruitsTu[this.currentClickIndex];
-        if(this.currentClickIndex ==0 ){
-            setTimeout(() => {
-                HandClick.instance.HandClickObject(targetNode);
-            }, 100);
-        }
-        else {
-            HandClick.instance.HandClickObject(targetNode);
-        }
-        setTimeout(() => {
-            this.HandleObjectInContainer(this.listfruitsTu[this.currentClickIndex]);
-        }, 500);
-        this.scheduleOnce(() => {
-            this.currentClickIndex++;
-            this.runHandClickSequence();
-        }, 1);
-    
+       
     },
-    HandleObjectInContainer(node){
-        let targetNode= this.containerTut.children[this.currentClickIndex];
-        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 0));
-        let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
-        cc.tween(node)
-        .to(0.5, { position: targetPos }, { easing: 'sineInOut' })
-        .call(()=>{
-            cc.tween(node)
-            .call(()=>{
-                if(node == this.listfruitsTu[2]){
-                    this.setFruitPositionAll();
-                }
-            })
-            .start();
-            })
-        .start();
-    },
-
-    setFruitPosition(fruitNode, row, col) {
-        let heightframe = cc.winSize.height;
-        let totalCols = 6; 
-        let spacingX = 150;
-        let spacingY = 180;
-        let startX = -((totalCols - 1) * spacingX / 2);
-        let startY = heightframe/2 + 200;  
-        let posX = startX + col * spacingX;
-        let posY = startY - row * spacingY;
-        fruitNode.setPosition(cc.v2(posX, posY));
-    }
 });
 module.exports=Tutorials;

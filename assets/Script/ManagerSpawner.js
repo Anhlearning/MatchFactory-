@@ -4,6 +4,8 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+
+const AudioEngine = require('./AudioEngine');
 const ManagerSpawner=cc.Class({
     extends: cc.Component,
 
@@ -16,6 +18,7 @@ const ManagerSpawner=cc.Class({
             default:[],
             type:[cc.String]
         },
+        AudioManager:cc.Node,
         stack:cc.Node,
         liststack: [cc.Node],
     },
@@ -24,7 +27,21 @@ const ManagerSpawner=cc.Class({
     },    
     onLoad(){
         ManagerSpawner.instance=this;
+
+        this.audioEngineScript = this.AudioManager.getComponent("AudioEngine");
+        this.audioEngineScript.playBackground();
+        var self = this;
+        cc.game.on(cc.game.EVENT_HIDE, function () {
+            self.audioEngineScript.muteAudio();
+        });
+
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            if (CONFIG.isPlaySound)
+                self.audioEngineScript.unmuteAudio();
+        });
+
         this.mindistanceZ=0;
+        this.itemTutHand=[];
     },
     start () {
         this.spawnObject();
@@ -66,12 +83,12 @@ const ManagerSpawner=cc.Class({
         }
     
         let startX = -((totalCols - 1) * spacingX / 2);
-        let startZ = -(heightframe / 2 + 300);
+        let startZ = -(heightframe / 2 + 600);
         for (let row = 0; row < this.nodeStringList.length; row++) {
             let str = this.nodeStringList[row];
             let numbers = str.match(/\d+/g);
             if (!numbers) continue;
-    
+            let lastRowNodes = []; // Danh sách node trong hàng cuối cùng
             for (let col = 0; col < numbers.length; col++) {
                 let num = numbers[col];
                 let index = parseInt(num);
@@ -82,13 +99,19 @@ const ManagerSpawner=cc.Class({
                     let posX = startX + col * spacingX;
                     let posZ = startZ + row * spacingY;
                     this.mindistanceZ = Math.min(posZ, this.mindistanceZ);
-    
                     // Set position 3D
                     newNode.setPosition(posX, 0, posZ);
                     // Bỏ hết hiệu ứng: opacity, scale, tween
                     this.node.addChild(newNode);
+                    if (row === this.nodeStringList.length - 1 && newNode.name === "0") {
+                        lastRowNodes.push(newNode);
+                    }
                 }
             }
+            if (row === this.nodeStringList.length - 1) {
+                this.ItemTutHand = lastRowNodes.reverse().slice(-3).reverse();
+            }
+            
         }
     },
     

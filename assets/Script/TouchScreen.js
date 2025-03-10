@@ -69,7 +69,6 @@ cc.Class({
         }
 
         if (hitObject) {
-            cc.log(`✅ Chọn được object: ${hitObject.name}`);
             const onClickObject = hitObject.getComponent('OnClickObject');
             onClickObject.HandleClickObject();
         } 

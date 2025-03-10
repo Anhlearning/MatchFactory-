@@ -4,7 +4,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
+const Tutorial = require("./Tutorial");
 const HandClick=cc.Class({
     extends: cc.Component,
 
@@ -35,7 +35,7 @@ const HandClick=cc.Class({
         this.node.setPosition(localPos);
     },
 
-    HandClickObject(targetNode) {
+    HandClickObject(targetNode,index) {
         if (!targetNode) {
             cc.error("Target node is null!");
             return;
@@ -45,9 +45,14 @@ const HandClick=cc.Class({
             let localPos = this.node.parent.convertToNodeSpaceAR(worldPos);
     
             cc.tween(this.node)
-                .to(0.5, { position: cc.v2(localPos.x+40, localPos.y-50) }, { easing: "sineInOut" }) // Di chuyển mượt mà
+                .to(0.5, { position: cc.v2(localPos.x+10, localPos.y-10) }, { easing: "sineInOut" }) // Di chuyển mượt mà
                 .call(() => {
                     this.anim.play();
+                    this.anim.once("finished", () => { 
+                        const ClickObject=targetNode.getComponent('OnClickObject');
+                        ClickObject.HandleClickObject();
+                        Tutorial.instance.SequenHandClick(index+1);
+                    }, this);
                 })
                 .start();
         } else {
