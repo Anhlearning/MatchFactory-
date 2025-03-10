@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 const AudioEngine = require('./AudioEngine');
 const ManagerClick = require('./ManagerClick');
+const Tutorials=require('./Tutorial');
 cc.Class({
     extends: cc.Component,
 
@@ -32,7 +33,10 @@ cc.Class({
         if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) {
             return;
         }
-        AudioEngine.instance.playClick();
+        Tutorials.instance.HideNode();
+        ManagerClick.instance.HandleObjectClicked(this.node);
+    },
+    HandleClickObjectOfTut(){
         ManagerClick.instance.HandleObjectClicked(this.node);
     },
     CheckIsObjectMinZ() {

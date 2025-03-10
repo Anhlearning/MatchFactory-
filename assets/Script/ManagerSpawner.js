@@ -4,7 +4,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
+import CONFIG from "Config";
 const AudioEngine = require('./AudioEngine');
 const ManagerSpawner=cc.Class({
     extends: cc.Component,
@@ -42,6 +42,7 @@ const ManagerSpawner=cc.Class({
 
         this.mindistanceZ=0;
         this.itemTutHand=[];
+        this.ItemTutHandName1=[];
     },
     start () {
         this.spawnObject();
@@ -70,7 +71,7 @@ const ManagerSpawner=cc.Class({
         }
     
         let heightframe = 1520;
-        let spacingX = 100;  
+        let spacingX = 110;  
         let spacingY = 150;  
     
         let totalCols = 0; 
@@ -81,14 +82,14 @@ const ManagerSpawner=cc.Class({
                 totalCols = Math.max(totalCols, numbers.length);
             }
         }
-    
+        let lastRowNodes = []; 
+        let lastRowNodesName1 = []; 
         let startX = -((totalCols - 1) * spacingX / 2);
         let startZ = -(heightframe / 2 + 600);
         for (let row = 0; row < this.nodeStringList.length; row++) {
             let str = this.nodeStringList[row];
             let numbers = str.match(/\d+/g);
             if (!numbers) continue;
-            let lastRowNodes = []; // Danh sách node trong hàng cuối cùng
             for (let col = 0; col < numbers.length; col++) {
                 let num = numbers[col];
                 let index = parseInt(num);
@@ -106,18 +107,21 @@ const ManagerSpawner=cc.Class({
                     if (row === this.nodeStringList.length - 1 && newNode.name === "0") {
                         lastRowNodes.push(newNode);
                     }
+                    
+                    if (row >= this.nodeStringList.length - 2 && newNode.name === "1") {
+                        lastRowNodesName1.push(newNode);
+                    }
                 }
             }
-            if (row === this.nodeStringList.length - 1) {
-                this.ItemTutHand = lastRowNodes.reverse().slice(-3).reverse();
-            }
-            
         }
+        this.ItemTutHand = lastRowNodes.reverse().slice(-3).reverse();
+
+        // Lưu 3 phần tử gần cuối cùng có name === "1"
+        this.ItemTutHandName1 = lastRowNodesName1.reverse().slice(-3).reverse();
     },
     
     SpawnObjectSingle(posX) {
         if (this.listSpawner.length === 0) {
-            cc.error("listSpawner is empty!");
             return;
         }
     
@@ -132,7 +136,6 @@ const ManagerSpawner=cc.Class({
         this.node.addChild(newNode);
         // Đặt vị trí theo không gian thế giới
         newNode.position=worldPos;
-        console.log(this.node.position);
         newNode.setSiblingIndex(0);
     },
     

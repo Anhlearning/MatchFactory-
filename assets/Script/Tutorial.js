@@ -32,7 +32,6 @@ const Tutorials = cc.Class({
 
     start () {
         setTimeout(() => {
-            console.log("TUT HAND ACTIVE ");
             this.HandTut.setSiblingIndex(this.HandTut.parent.children.length - 1);
             this.HandTut.active=true;
             this.HandTut.opacity=255;
@@ -42,17 +41,28 @@ const Tutorials = cc.Class({
 
     SequenHandClick(index) {
         if (!ManagerSpawner.instance.ItemTutHand || ManagerSpawner.instance.ItemTutHand.length === 0) {
-            console.log("Không có ItemTutHand để hướng dẫn!");
             return;
         }
     
-        if (index >= ManagerSpawner.instance.ItemTutHand.length) {
-            this.HideNode();
-            console.log("Hướng dẫn hoàn tất!");
+        if (index >= ManagerSpawner.instance.ItemTutHand.length-1) {
+            this.HandClick.HandClickObjectFake(ManagerSpawner.instance.ItemTutHand[index]);
             return;
         }
         let targetNode = ManagerSpawner.instance.ItemTutHand[index];
-        this.HandClick.HandClickObject(targetNode,index);
+        this.HandClick.HandClickObject(targetNode,index,0);
+    },
+    SequenHandClickName1(index) {
+        if (!ManagerSpawner.instance.ItemTutHandName1 || ManagerSpawner.instance.ItemTutHandName1.length === 0) {
+            return;
+        }
+    
+        if (index >= ManagerSpawner.instance.ItemTutHandName1.length - 1) {
+            this.HandClick.HandClickObjectFake(ManagerSpawner.instance.ItemTutHandName1[index]);
+            return;
+        }
+        
+        let targetNode = ManagerSpawner.instance.ItemTutHandName1[index];
+        this.HandClick.HandClickObject(targetNode, index , 1);
     },
     
     HideNode(){
@@ -60,7 +70,10 @@ const Tutorials = cc.Class({
         this.TextTut.active=false;
         this.node.active=false;
     },
-
+    ShowNode(){
+        this.HandTut.active=true;
+        this.node.active=true;
+    },
     runHandClickSequence() {
        
     },

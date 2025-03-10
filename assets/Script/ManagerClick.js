@@ -7,7 +7,7 @@
 const { error } = require('console');
 const ManagerSpawner= require('ManagerSpawner');
 const AudioEngine = require('./AudioEngine');
-
+const Tutorial = require('./Tutorial');
 const ManagerClick=cc.Class({
     extends: cc.Component,
 
@@ -20,6 +20,7 @@ const ManagerClick=cc.Class({
         psNode:cc.Node,
         errorNode:cc.Node,
         Hand:cc.Node,
+        Tutorial:cc.Node,
     },
 
     statics: {
@@ -28,6 +29,9 @@ const ManagerClick=cc.Class({
 
 
     onLoad () {
+        this.countCLick = 0;
+        this.clickTimer = 0;
+        this.isCheckingClick = false;
         ManagerClick.instance=this;
         this.countContainer=0;
         this.countStack=0;
@@ -40,12 +44,30 @@ const ManagerClick=cc.Class({
 
     start () {
     },
-    
+    update(dt) {
+        if (this.isCheckingClick) {
+            this.clickTimer += dt; 
+            if (this.clickTimer >= 5) { 
+                if (this.countCLick === 3) {
+                    this.Tutorial.active=true;
+                    Tutorial.instance.ShowNode();
+                    Tutorial.instance.SequenHandClickName1(0); 
+                }
+                this.isCheckingClick = false; 
+            }
+        }
+    },
     HandleObjectClicked(node){
-        if(this.isEnd||this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) || node.position.x == this.blockX){
+        this.countCLick++;
+        if (this.countCLick === 3 && !this.isCheckingClick) {
+            this.isCheckingClick = true; 
+            this.clickTimer = 0;
+        }
+        if(this.isEnd||this.objectsCurrentContainer.includes(node) || this.objectsCurrentStack.includes(node) ){
             return ;
         }
-        if(!this.currentContainer){
+        AudioEngine.instance.playClick();
+        if(!this.currentContainer || this.objectsCurrentContainer.length >= 3){
             this.PushObjectInStack(node);
             return;
         }
@@ -60,8 +82,6 @@ const ManagerClick=cc.Class({
             }
             return;
         }
-    
-       
         if (nameContainer === node.name) {
             isNameExist = true;
         }
@@ -74,7 +94,7 @@ const ManagerClick=cc.Class({
         }
     },
     HandleObjectInStack(node){
-        listObjectSameName=[];
+        let listObjectSameName=[];
         for (let i = 0; i < this.objectsCurrentStack.length; i++) {
             if(listObjectSameName.length >=2) break;
             if (this.objectsCurrentStack[i].name === node.name) {
@@ -149,22 +169,22 @@ const ManagerClick=cc.Class({
         let targetNode = this.containers[0].children[this.objectsCurrentContainer.length];
         this.objectsCurrentContainer.push(node);
     
-        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v3(0.05, -0.05, 0));
+        let containerWorldPos = targetNode.convertToWorldSpaceAR(cc.v3(0.05, -0.07, 0));
         let targetPos = node.parent.convertToNodeSpaceAR(containerWorldPos);
         this.HandleMoveDownTile(node.position);
         this.jumpWithEffect(node,targetPos,150,0.6,this);
     },
     jumpWithEffect(node, targetPos, jumpHeight, jumpTime, context) {
-        const currentPos = node.position;
+    const currentPos = node.position;
 
-        const midPos = cc.v3(
-            (targetPos.x ) ,
-            Math.max(currentPos.y, targetPos.y) + jumpHeight,
-            (targetPos.z )
-        );
+    const midPos = cc.v3(
+        (targetPos.x ) ,
+        Math.max(currentPos.y, targetPos.y) + jumpHeight,
+        (targetPos.z )
+    );
 
-        const upTime = jumpTime;
-        const downTime = jumpTime * 0.25;
+    const upTime = jumpTime;
+    const downTime = jumpTime * 0.25;
 
     cc.tween(node)
         .to(upTime, { position: midPos }, { easing: 'sineOut' })
@@ -258,7 +278,7 @@ const ManagerClick=cc.Class({
             // Đặt lại vị trí cho firstContainer ở cuối hàng trong không gian 3D
             firstContainer.setPosition(lastContainerPos.x, lastContainerPos.y, lastContainerPos.z);
             firstContainer.opacity = 255;
-
+            this.currentContainer = secondContainer;
             this.containers.push(firstContainer);
         })
         .start();
@@ -267,7 +287,6 @@ const ManagerClick=cc.Class({
         cc.tween(secondContainer)
         .to(0.5, { position: cc.v3(firstContainerPos.x, firstContainerPos.y, firstContainerPos.z) }, { easing: "sineInOut" })
         .call(() => {
-            this.currentContainer = this.containers[0];
             this.AutoPushStackInContainer();
         })
         .start();
@@ -285,7 +304,7 @@ const ManagerClick=cc.Class({
         }
         let nameContainer=this.currentContainer.name.split(" ")[1];
         let ObjectHandList=[];
-        ok=false;
+        let ok=false;
         for(let i=0;i < this.objectsCurrentStack.length;i++){
             if(this.objectsCurrentStack[i].name === nameContainer){
                 ObjectHandList.push(this.objectsCurrentStack[i]);
@@ -368,7 +387,6 @@ const ManagerClick=cc.Class({
         let originScaleY = node.scaleY;
         let originScaleZ = node.scaleZ;
         cc.tween(node)
-            .delay(0.05*index)
             .to(0.3, { position: cc.v3(node.position.x, node.position.y, newZ) }, { easing: 'sineInOut' })
             .call(() => {
                 if (index === nodesToMove.length - 1) {

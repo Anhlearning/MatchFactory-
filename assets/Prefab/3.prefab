@@ -100,7 +100,7 @@
     "_prefab": {
       "__id__": 4
     },
-    "_opacity": 240,
+    "_opacity": 150,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -122,16 +122,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0.066,
+        0.14,
         0,
-        -0.127,
+        -0.09,
         0.7071067811865475,
         0,
         0,
         0.7071067811865476,
-        0.51,
-        0.51,
-        0.51
+        0.45,
+        0.45,
+        0.45
       ]
     },
     "_eulerAngles": {
@@ -192,7 +192,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Apple_V2_00",
+    "_name": "Coconut_V1_00",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -222,30 +222,30 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0,
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
+        0.3,
+        0.207,
+        -0.05,
         0,
         0,
-        0,
-        -0.0697390629563251,
-        0,
-        0,
-        0.9975652675880279,
-        1.55,
-        1.55,
-        1.55
+        0.7071067811865475,
+        0.7071067811865476,
+        1.1,
+        1.1,
+        1.1
       ]
     },
     "_eulerAngles": {
       "__type__": "cc.Vec3",
-      "x": -7.998,
+      "x": 0,
       "y": 0,
-      "z": 0
+      "z": 90
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -264,11 +264,11 @@
     "_enabled": true,
     "_materials": [
       {
-        "__uuid__": "b0fac488-2a70-4d83-bbe4-ade07980bf6f"
+        "__uuid__": "e9bf7a0c-52d4-4838-a0b5-b0cba5dedf2f"
       }
     ],
     "_mesh": {
-      "__uuid__": "72800e9b-4247-48fc-9ea4-638c6b0c6d21"
+      "__uuid__": "6e2f810d-cb36-4c9d-8614-8c699a7e86ab"
     },
     "_receiveShadows": false,
     "_shadowCastingMode": 0,
@@ -284,7 +284,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "d2cJbuCIZEFrC3rJG+LL/5",
+    "fileId": "9dzPrjZtpMMqWam7H8kPUq",
     "sync": false
   },
   {

@@ -28,14 +28,15 @@ class Config {
         this.ScrewJam = 7;
         this.BloomTile=8;
         this.BirdSort2=9;   
-        this.defaultVersion = "2a25";
+        this.GoodsPuzzle=10;
+        this.defaultVersion = "3a25";
         this.version = this.defaultVersion;
         this.PlayableAdsGame = this.defaultGame;
         this.PlayableAdsType = this.defaultAds;
 
-        this.linkAndroid = 'https://play.google.com/store/apps/details?id=com.globalplay.birdsort2.color.puzzle';;
-        this.linkiOS = 'https://apps.apple.com/us/app/bird-sort-2-color-puzzle-game/id6689494714';
-        this.linkWebAds = 'https://play.google.com/store/apps/details?id=com.globalplay.birdsort2.color.puzzle';;
+        this.linkAndroid = 'https://play.google.com/store/apps/details?id=com.fc.goods.sort.matching.puzzle.triplemaster&hl=en';;
+        this.linkiOS = 'https://apps.apple.com/us/app/goods-puzzle-sort-challenge/id6482849843';
+        this.linkWebAds = 'https://play.google.com/store/apps/details?id=com.fc.goods.sort.matching.puzzle.triplemaster&hl=en';;
 
         if (this.PlayableAdsType === this.Adwords || this.PlayableAdsType === this.Facebook || this.PlayableAdsType === this.IronSource) {
             this.isPlaySound = false;

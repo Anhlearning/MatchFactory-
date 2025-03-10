@@ -35,7 +35,8 @@ const HandClick=cc.Class({
         this.node.setPosition(localPos);
     },
 
-    HandClickObject(targetNode,index) {
+    HandClickObject(targetNode,index,number) {
+        cc.Tween.stopAllByTarget(this.node);
         if (!targetNode) {
             cc.error("Target node is null!");
             return;
@@ -50,15 +51,42 @@ const HandClick=cc.Class({
                     this.anim.play();
                     this.anim.once("finished", () => { 
                         const ClickObject=targetNode.getComponent('OnClickObject');
-                        ClickObject.HandleClickObject();
-                        Tutorial.instance.SequenHandClick(index+1);
+                        ClickObject.HandleClickObjectOfTut();
+                        if(number == 0 ){
+                            Tutorial.instance.SequenHandClick(index+1);
+                        }
+                        else {
+                            Tutorial.instance.SequenHandClickName1(index+1);
+                        }
                     }, this);
                 })
                 .start();
         } else {
             cc.error("Không tìm thấy Animation trên node:", this.node.name);
         }
+    },
+    HandClickObjectFake(targetNode){
+        cc.Tween.stopAllByTarget(this.node);
+        if (!targetNode) {
+            cc.error("Target node is null!");
+            return;
+        }
+        if (this.anim) {
+            let worldPos = targetNode.convertToWorldSpaceAR(cc.v2(0, 0));
+            let localPos = this.node.parent.convertToNodeSpaceAR(worldPos);
+            cc.tween(this.node)
+            .repeatForever(
+                cc.tween()
+                    .delay(0.5)
+                    .to(0.5, { position: cc.v2(localPos.x + 30, localPos.y - 10) }, { easing: "sineInOut" }) 
+                    .call(() => {
+                        this.anim.play();
+                    })
+            )
+            .start();
+        } else {
+            cc.error("Không tìm thấy Animation trên node:", this.node.name);
+        }
     }
-    
 });
 module.exports=HandClick;
