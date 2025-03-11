@@ -36,7 +36,6 @@ cc.Class({
             BgText: cc.v3(this.BgText.scale,this.BgText.scale,this.BgText.scale),
         };
         
-        console.log('Origin Scales:', this.originScales);
         this.originHeigh=1920;
         this.originWidth=1080;
         this.setResizeCallback();
@@ -56,7 +55,6 @@ cc.Class({
 
         let targetScale = 1;
 
-        console.log(widthframe + " : "+ heightframe);
         if(heightframe > widthframe * 2){
             this.camera3D.setPosition(cc.v3(0,870,400));
             let rotation = cc.Quat.fromEuler(new cc.Quat(), -65, 0, 0);
@@ -68,7 +66,6 @@ cc.Class({
             this.BgText.setPosition(cc.v3(123,80,200));
         }
         else if(heightframe >= 1.3 * widthframe  && heightframe < 1.7 *widthframe){
-            console.log("Màn ipad");
             targetScale = 1;
             this.AdjustScaleAllObject(targetScale);
             this.SetOriginPosAllOb();
@@ -91,7 +88,6 @@ cc.Class({
             this.camera3D.setRotation(rotation);
             this.camera3D.getComponent(cc.Camera).fov = 65;
             targetScale = widthframe/1080;
-            console.log(targetScale);
             this.AdjustScaleAllObject(targetScale);
             this.SetOriginPosAllOb();
         }
@@ -165,8 +161,7 @@ cc.Class({
         let newX = widthframe / 10 ;
         let newY = heightframe / 20;
         this.container.setPosition(cc.v3(newX,-50,-newY));
-        this.BgText.setPosition(cc.v3(newX*1.5,0,-newY*3.5));
-        //this.tutorials.setPosition(cc.v3(newX, -50,-newY));
+        this.BgText.setPosition(cc.v3(newX*1.5,0,-newY*3.6));
     },
     
     

@@ -323,12 +323,12 @@
     "_type": 3,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 253,
-      "b": 226,
+      "r": 250,
+      "g": 240,
+      "b": 207,
       "a": 255
     },
-    "_intensity": 0.45,
+    "_intensity": 0.5,
     "_range": 1000,
     "_spotAngle": 60,
     "_spotExp": 1,
@@ -381,10 +381,10 @@
         -312.315,
         573.172,
         -15.01,
-        -0.24102048453901123,
-        -0.4006361421393319,
-        -0.636947217614585,
-        0.6129421258302712,
+        -0.20207981278948436,
+        -0.43981851300440855,
+        -0.6105495492045172,
+        0.626859372465403,
         1,
         1,
         1
@@ -392,7 +392,7 @@
     },
     "_eulerAngles": {
       "__type__": "cc.Vec3",
-      "x": -84.865,
+      "x": -77.669,
       "y": -99.42,
       "z": -35.994
     },
@@ -419,13 +419,13 @@
       "b": 255,
       "a": 255
     },
-    "_intensity": 0.7,
+    "_intensity": 0.8,
     "_range": 1000,
     "_spotAngle": 60,
     "_spotExp": 1,
     "_shadowType": 2,
     "_shadowResolution": 1024,
-    "_shadowDarkness": 14.600000000000001,
+    "_shadowDarkness": 1.2,
     "_shadowMinDepth": 1,
     "_shadowMaxDepth": 4096,
     "_shadowFrustumSize": 1024,
@@ -531,8 +531,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244,
-      "height": 211
+      "width": 240,
+      "height": 207
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -625,8 +625,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244,
-      "height": 211
+      "width": 240,
+      "height": 207
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -719,8 +719,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244,
-      "height": 211
+      "width": 240,
+      "height": 207
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -813,8 +813,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244,
-      "height": 211
+      "width": 240,
+      "height": 207
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -907,8 +907,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 244,
-      "height": 211
+      "width": 240,
+      "height": 207
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3298,6 +3298,9 @@
     "Tutorial": {
       "__id__": 89
     },
+    "EndgameUI": {
+      "__id__": 102
+    },
     "_id": "77/7UwqmBLHrMHo178BxK/"
   },
   {
@@ -3915,8 +3918,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 20,
-      "height": 20
+      "width": 312,
+      "height": 312
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3934,9 +3937,9 @@
         0,
         0,
         1,
-        5000,
-        5000,
-        5000
+        500,
+        500,
+        500
       ]
     },
     "_eulerAngles": {
@@ -3968,7 +3971,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
+      "__uuid__": "ea658588-8dab-4b25-a92e-901c4691a489"
     },
     "_type": 1,
     "_sizeMode": 1,
@@ -5683,7 +5686,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
+      "__uuid__": "ea658588-8dab-4b25-a92e-901c4691a489"
     },
     "_type": 1,
     "_sizeMode": 0,

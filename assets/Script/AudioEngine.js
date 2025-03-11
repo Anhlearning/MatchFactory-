@@ -90,32 +90,32 @@ const AudioEngine = cc.Class({
     },
     playMoveBusStop1() {
         if (CONFIG.isPlaySound) {
-            this.currentAudio[6] = cc.audioEngine.play(this.audio[6], false, 1);
+            this.currentAudio[6] = cc.audioEngine.play(this.audio[6], false, 0.8);
         }
     },
     playMoveBusStop2() {
         if (CONFIG.isPlaySound) {
-            this.currentAudio[10] = cc.audioEngine.play(this.audio[10], false, 1);
+            this.currentAudio[10] = cc.audioEngine.play(this.audio[10], false, 0.8);
         }
     },
     playMoveBusStop3() {
         if (CONFIG.isPlaySound) {
-            this.currentAudio[11] = cc.audioEngine.play(this.audio[11], false, 1);
+            this.currentAudio[11] = cc.audioEngine.play(this.audio[11], false, 0.8);
         }
     },
     playGameOver() {
         if (CONFIG.isPlaySound) {
-            this.currentAudio[7] = cc.audioEngine.play(this.audio[7], false, 1);
+            this.currentAudio[7] = cc.audioEngine.play(this.audio[7], false, 0.8);
         }
     },
     playWin() {
         if (CONFIG.isPlaySound) {
-            this.currentAudio[9] = cc.audioEngine.play(this.audio[9], false, 1);
+            this.currentAudio[9] = cc.audioEngine.play(this.audio[9], false, 0.8);
         }
     },
     playTictac() {
         if (CONFIG.isPlaySound) {
-            this.currentAudio[12] = cc.audioEngine.play(this.audio[12], false, 1);
+            this.currentAudio[12] = cc.audioEngine.play(this.audio[12], false, 0.8);
         }
     },
     muteIS() {

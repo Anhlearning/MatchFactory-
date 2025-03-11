@@ -87,7 +87,7 @@ const Tutorial = cc.Class({
             return;
         }
         
-        if (index >= ManagerSpawner.instance.ItemTutHand.length-1) {
+        if (index === ManagerSpawner.instance.ItemTutHand.length-1) {
             this.HandClick.HandClickObjectFake(ManagerSpawner.instance.ItemTutHand[index]);
             return;
         }
@@ -113,7 +113,7 @@ const Tutorial = cc.Class({
             return;
         }
     
-        if (index >= ManagerSpawner.instance.ItemTutHandName1.length - 1) {
+        if (index === ManagerSpawner.instance.ItemTutHandName1.length - 1) {
             this.HandClick.HandClickObjectFake(ManagerSpawner.instance.ItemTutHandName1[index]);
             return;
         }

@@ -26,27 +26,25 @@ const ManagerSpawner=cc.Class({
         instance: null,
     },    
     onLoad(){
-        ManagerSpawner.instance=this;
-
+        CONFIG.onGameReady();
         this.audioEngineScript = this.AudioManager.getComponent("AudioEngine");
         this.audioEngineScript.playBackground();
         var self = this;
         cc.game.on(cc.game.EVENT_HIDE, function () {
             self.audioEngineScript.muteAudio();
         });
-
         cc.game.on(cc.game.EVENT_SHOW, function () {
             if (CONFIG.isPlaySound)
                 self.audioEngineScript.unmuteAudio();
         });
 
+        ManagerSpawner.instance=this;
         this.mindistanceZ=0;
         this.itemTutHand=[];
         this.ItemTutHandName1=[];
         this.spawnObject();
     },
     start () {
-        //this.showStackWithEffect();
     },
     showStackWithEffect() {
         if (!this.liststack || this.liststack.length === 0) {

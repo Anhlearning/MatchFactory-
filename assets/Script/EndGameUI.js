@@ -18,6 +18,7 @@ cc.Class({
 
     showUIWithEffect(node) {
         AudioEngine.instance.playWinLevel();
+        Config.openLinkApp();
         Config.onEndGame();
         node.scale = 0;  // Bắt đầu từ nhỏ
         node.angle = 0;  // Góc xoay ban đầu

@@ -38,7 +38,6 @@ const HandClick=cc.Class({
     HandClickObject(targetNode,index,number) {
         cc.Tween.stopAllByTarget(this.node);
         if (!targetNode) {
-            cc.error("Target node is null!");
             return;
         }
         if (this.anim) {
@@ -63,14 +62,11 @@ const HandClick=cc.Class({
                     }, this);
                 })
                 .start();
-        } else {
-            cc.error("Không tìm thấy Animation trên node:", this.node.name);
-        }
+        } 
     },
     HandClickObjectFake(targetNode){
         cc.Tween.stopAllByTarget(this.node);
         if (!targetNode) {
-            cc.error("Target node is null!");
             return;
         }
         if (this.anim) {
@@ -86,9 +82,7 @@ const HandClick=cc.Class({
                     })
             )
             .start();
-        } else {
-            cc.error("Không tìm thấy Animation trên node:", this.node.name);
-        }
+        } 
     }
 });
 module.exports=HandClick;

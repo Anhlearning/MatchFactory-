@@ -22,6 +22,7 @@ const ManagerClick=cc.Class({
         errorNode:cc.Node,
         Hand:cc.Node,
         Tutorial:cc.Node,
+        EndgameUI:cc.Node,
     },
 
     statics: {
@@ -42,6 +43,7 @@ const ManagerClick=cc.Class({
         this.errorScr=this.errorNode.getComponent('Error');
         this.blockX=-5000;
         this.demDone=0;
+        this.endGameSrc=this.EndgameUI.getComponent('EndGameUI');
     },
 
     start () {
@@ -52,7 +54,11 @@ const ManagerClick=cc.Class({
             if (this.clickTimer >= 5) { 
                 this.Tutorial.active=true;
                 const tut= this.Tutorial.getComponent('Tutorial');
-                if(this.objectsCurrentContainer.length < 3 && this.demDone==0){
+                this.isCheckingClick = false; 
+                if(this.countCLick > 3) {
+                    return;
+                }
+                else if(this.objectsCurrentContainer.length < 3 && this.demDone==0){
                     tut.ShowNode();
                     tut.SequenHandClick(0); 
                 }
@@ -60,16 +66,17 @@ const ManagerClick=cc.Class({
                     tut.ShowNode();
                     tut.SequenHandClickName1(0); 
                 }
-                this.isCheckingClick = false; 
             }
         }
     },
     HandleObjectClicked(node){
         this.countCLick++;
-        if(this.countCLick >= 16){
-            //Vers1 -- ở đây ...
-            // Config.openLinkApp();
-            // Config.onEndGame();
+        if(this.countCLick >= 20){
+            this.isEnd=true;
+            this.EndgameUI.active=true;
+            this.endGameSrc.BoradCastAnimation();
+            Config.openLinkApp();
+            Config.onEndGame();
         }
         if (this.countCLick === 3 && !this.isCheckingClick) {
             this.isCheckingClick = true; 
