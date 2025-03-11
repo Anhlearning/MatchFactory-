@@ -7,7 +7,8 @@
 const { error } = require('console');
 const ManagerSpawner= require('ManagerSpawner');
 const AudioEngine = require('./AudioEngine');
-const Tutorial = require('./Tutorial');
+const Tutorial = require("./Tutorial");
+const Config = require('./Config');
 const ManagerClick=cc.Class({
     extends: cc.Component,
 
@@ -40,6 +41,7 @@ const ManagerClick=cc.Class({
         this.isEnd=false;
         this.errorScr=this.errorNode.getComponent('Error');
         this.blockX=-5000;
+        this.demDone=0;
     },
 
     start () {
@@ -48,10 +50,15 @@ const ManagerClick=cc.Class({
         if (this.isCheckingClick) {
             this.clickTimer += dt; 
             if (this.clickTimer >= 5) { 
-                if (this.countCLick === 3) {
-                    this.Tutorial.active=true;
-                    Tutorial.instance.ShowNode();
-                    Tutorial.instance.SequenHandClickName1(0); 
+                this.Tutorial.active=true;
+                const tut= this.Tutorial.getComponent('Tutorial');
+                if(this.objectsCurrentContainer.length < 3 && this.demDone==0){
+                    tut.ShowNode();
+                    tut.SequenHandClick(0); 
+                }
+                else if (this.demDone >= 1){
+                    tut.ShowNode();
+                    tut.SequenHandClickName1(0); 
                 }
                 this.isCheckingClick = false; 
             }
@@ -59,6 +66,11 @@ const ManagerClick=cc.Class({
     },
     HandleObjectClicked(node){
         this.countCLick++;
+        if(this.countCLick >= 16){
+            //Vers1 -- ở đây ...
+            // Config.openLinkApp();
+            // Config.onEndGame();
+        }
         if (this.countCLick === 3 && !this.isCheckingClick) {
             this.isCheckingClick = true; 
             this.clickTimer = 0;
@@ -175,16 +187,16 @@ const ManagerClick=cc.Class({
         this.jumpWithEffect(node,targetPos,150,0.6,this);
     },
     jumpWithEffect(node, targetPos, jumpHeight, jumpTime, context) {
-    const currentPos = node.position;
+        const currentPos = node.position;
 
-    const midPos = cc.v3(
-        (targetPos.x ) ,
-        Math.max(currentPos.y, targetPos.y) + jumpHeight,
-        (targetPos.z )
-    );
+        const midPos = cc.v3(
+            (targetPos.x ) ,
+            Math.max(currentPos.y, targetPos.y) + jumpHeight,
+            (targetPos.z )
+        );
 
-    const upTime = jumpTime;
-    const downTime = jumpTime * 0.25;
+        const upTime = jumpTime;
+        const downTime = jumpTime * 0.25;
 
     cc.tween(node)
         .to(upTime, { position: midPos }, { easing: 'sineOut' })
@@ -246,6 +258,7 @@ const ManagerClick=cc.Class({
     
 
     HandleNextContainer(destroyList){
+        this.demDone++;
         let firstContainer = this.containers[0]; 
         let secondContainer = this.containers[1]; 
         let thirdContainer = this.containers[2];

@@ -17,6 +17,7 @@ cc.Class({
         tutorials:cc.Node,
         listBG:[cc.Node],
         camera3D: cc.Node,
+        BgText:cc.Node,
     },
 
     onLoad(){
@@ -25,13 +26,14 @@ cc.Class({
             container: this.container.getPosition(),
             managerSpawn: this.managerSpawn.getPosition(),
             tutorials: this.tutorials.getPosition(),
+            BgText:this.BgText.getPosition(),
         };
         this.originScales = {
             stack: cc.v3(this.stack.scale,this.stack.scale,this.stack.scale),
             container: cc.v3(this.container.scale,this.container.scale,this.container.scale),
             managerSpawn: cc.v3(this.managerSpawn.scale,this.managerSpawn.scale,this.managerSpawn.scale),
             tutorials: cc.v3(this.tutorials.scale,this.tutorials.scale,this.tutorials.scale),
-
+            BgText: cc.v3(this.BgText.scale,this.BgText.scale,this.BgText.scale),
         };
         
         console.log('Origin Scales:', this.originScales);
@@ -63,6 +65,7 @@ cc.Class({
             targetScale = widthframe/1080;
             this.AdjustScaleAllObject(targetScale);
             this.SetOriginPosAllOb();
+            this.BgText.setPosition(cc.v3(123,80,200));
         }
         else if(heightframe >= 1.3 * widthframe  && heightframe < 1.7 *widthframe){
             console.log("Màn ipad");
@@ -74,6 +77,7 @@ cc.Class({
             targetScale = widthframe / 1920 / 2;
             this.AdjustScaleAllObject(targetScale);
             this.managerSpawn.setPosition(cc.v3(-widthframe / 10, 0,10));
+            this.tutorials.setPosition(cc.v3(-widthframe / 10, 10, 0)); 
             this.stack.setPosition(cc.v3(-widthframe/10-4,0,120));
             this.camera3D.setPosition(cc.v3(0,900,250));
             let rotation = cc.Quat.fromEuler(new cc.Quat(), -68, 0, 0);
@@ -82,7 +86,6 @@ cc.Class({
             this.moveNodeToRightEdge();  
         }
         else if (widthframe < heightframe){
-            console.log("màn hình dọc") 
             this.camera3D.setPosition(cc.v3(0,857,403));
             let rotation = cc.Quat.fromEuler(new cc.Quat(), -60, 0, 0);
             this.camera3D.setRotation(rotation);
@@ -118,6 +121,7 @@ cc.Class({
         this.container.setPosition(this.originPositions.container);
         this.managerSpawn.setPosition(this.originPositions.managerSpawn);
         this.tutorials.setPosition(this.originPositions.tutorials);
+        this.BgText.setPosition(this.originPositions.BgText);
     },
     AdjustScaleAllObject(targetScale) {
         this.stack.scale = cc.v3(
@@ -143,7 +147,11 @@ cc.Class({
             this.originScales.tutorials.y * targetScale,
             this.originScales.tutorials.z * targetScale
         );
-
+        this.BgText.scale = cc.v3(
+            this.originScales.BgText.x * targetScale,
+            this.originScales.BgText.y * targetScale,
+            this.originScales.BgText.z * targetScale
+        );
     },
     
     moveNodeToRightEdge() {
@@ -157,6 +165,7 @@ cc.Class({
         let newX = widthframe / 10 ;
         let newY = heightframe / 20;
         this.container.setPosition(cc.v3(newX,-50,-newY));
+        this.BgText.setPosition(cc.v3(newX*1.5,0,-newY*3.5));
         //this.tutorials.setPosition(cc.v3(newX, -50,-newY));
     },
     

@@ -52,6 +52,8 @@ const HandClick=cc.Class({
                     this.anim.once("finished", () => { 
                         const ClickObject=targetNode.getComponent('OnClickObject');
                         ClickObject.HandleClickObjectOfTut();
+                        Tutorial.instance.destroyCloneByIndex(index);
+                        Tutorial.instance.SetActiveNode(index);
                         if(number == 0 ){
                             Tutorial.instance.SequenHandClick(index+1);
                         }

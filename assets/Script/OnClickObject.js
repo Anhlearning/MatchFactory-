@@ -26,17 +26,23 @@ cc.Class({
         }
     },
     start() {
-        this.node.active = true;  // Đảm bảo đang bật
+        this.node.active = true; 
     },
 
     HandleClickObject() {
         if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) {
             return;
         }
-        Tutorials.instance.HideNode();
+        if(Tutorials.instance){
+            Tutorials.instance.HideNode();
+        }
+        this.node.opacity=255;
         ManagerClick.instance.HandleObjectClicked(this.node);
     },
     HandleClickObjectOfTut(){
+        if(!this.CheckIsObjectMinZ() || !ManagerClick.instance) {
+            return;
+        }
         ManagerClick.instance.HandleObjectClicked(this.node);
     },
     CheckIsObjectMinZ() {

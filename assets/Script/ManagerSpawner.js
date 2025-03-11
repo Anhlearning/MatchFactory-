@@ -43,9 +43,9 @@ const ManagerSpawner=cc.Class({
         this.mindistanceZ=0;
         this.itemTutHand=[];
         this.ItemTutHandName1=[];
+        this.spawnObject();
     },
     start () {
-        this.spawnObject();
         //this.showStackWithEffect();
     },
     showStackWithEffect() {
