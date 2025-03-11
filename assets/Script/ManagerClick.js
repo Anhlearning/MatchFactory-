@@ -71,13 +71,6 @@ const ManagerClick=cc.Class({
     },
     HandleObjectClicked(node){
         this.countCLick++;
-        if(this.countCLick >= 20){
-            this.isEnd=true;
-            this.EndgameUI.active=true;
-            this.endGameSrc.BoradCastAnimation();
-            Config.openLinkApp();
-            Config.onEndGame();
-        }
         if (this.countCLick === 3 && !this.isCheckingClick) {
             this.isCheckingClick = true; 
             this.clickTimer = 0;
