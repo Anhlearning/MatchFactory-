@@ -29,7 +29,7 @@ class Config {
         this.BloomTile=8;
         this.BirdSort2=9;   
         this.GoodsPuzzle=10;
-        this.defaultVersion = "3a25";
+        this.defaultVersion = "3b25";
         this.version = this.defaultVersion;
         this.PlayableAdsGame = this.defaultGame;
         this.PlayableAdsType = this.defaultAds;

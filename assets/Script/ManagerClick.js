@@ -71,13 +71,6 @@ const ManagerClick=cc.Class({
     },
     HandleObjectClicked(node){
         this.countCLick++;
-        if(this.countCLick >= 20){
-            this.isEnd=true;
-            this.EndgameUI.active=true;
-            this.endGameSrc.BoradCastAnimation();
-            Config.openLinkApp();
-            Config.onEndGame();
-        }
         if (this.countCLick === 3 && !this.isCheckingClick) {
             this.isCheckingClick = true; 
             this.clickTimer = 0;
@@ -266,6 +259,13 @@ const ManagerClick=cc.Class({
 
     HandleNextContainer(destroyList){
         this.demDone++;
+        if(this.demDone >= 6){
+            this.isEnd=true;
+            this.EndgameUI.active=true;
+            this.endGameSrc.BoradCastAnimation();
+            Config.openLinkApp();
+            Config.onEndGame();
+        }
         let firstContainer = this.containers[0]; 
         let secondContainer = this.containers[1]; 
         let thirdContainer = this.containers[2];

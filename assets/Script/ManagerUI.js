@@ -105,7 +105,6 @@ cc.Class({
         }
         else {
             let targetScale = Math.max(1,widthframe / 1080 );
-            console.error(targetScale);
             for(let i=0;i<this.listBG.length;i++){
                 this.listBG[i].scale= targetScale;
             }
